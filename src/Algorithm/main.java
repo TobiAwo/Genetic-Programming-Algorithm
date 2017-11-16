@@ -33,7 +33,7 @@ public class main {
 			for (int i = 0; i < rows; i++) {
 				
 				fillMatrixNext(matrix, matrixNext, evaluateRows(matrix, (FindSumforRow(matrix, getRandomRow())),
-						(FindSumforRowTwo(matrix, getRandomRow()))), i);
+						(FindSumforRow(matrix, getRandomRow()))), i);
 			}
 
 //			MUTATION
@@ -53,6 +53,8 @@ public class main {
 		printMatrix(matrix);
 		System.out.println();
 		evaluateOverallFitness(matrix);
+		sum3RandomRows(matrix, getRandomRow(), getRandomRow(), getRandomRow());
+
 	}
 
 	public static int getRandomFitness() {
@@ -105,22 +107,13 @@ public class main {
 		for (int value : row) {
 			sum = sum + value;
 		}
-		System.out.println("\nThe Sum of value in row " + (rowIndex + 1) + ": is " + sum);
-
-		int ar[] = new int[2];
-		ar[0] = sum;
-		ar[1] = rowIndex;
-
-		return ar;
-	}
-
-	public static int[] FindSumforRowTwo(int[][] matrix, int rowIndex) {
-		int sum = 0;
-		int[] row = matrix[rowIndex];
-		for (int value : row) {
-			sum = sum + value;
+		// number zero
+		if (sum == 0) {
+			
+			sum = 0;
 		}
-		System.out.println("The Sum of value in row " + (rowIndex + 1) + ": is " + sum);
+		//End
+		System.out.println("\nThe Sum of value in row " + (rowIndex + 1) + ": is " + sum);
 
 		int ar[] = new int[2];
 		ar[0] = sum;
@@ -134,17 +127,24 @@ public class main {
 		int biggestRowSumIndex = 0;
 		if ((sumIn1[0]) > (sumIn2[0])) {
 
+//			if (sumIn1[0] == 0) {
+//
+//				sumIn1[0] = columns + 10;
+//			}
+
 			System.out.println("Row: " + (sumIn1[1] + 1) + " contains greater Fitness of: " + (sumIn1[0]) + "\n");
 			biggestRowSumIndex = sumIn1[1];
-		} else if ((sumIn1[0]) < (sumIn2[0])) {
+		} else if ((sumIn1[0]) < (sumIn2[0]) || ((sumIn1[0]) == (sumIn2[0]))) {
+
+//			if (sumIn2[0] == 0) {
+//
+//				sumIn2[0] = columns + 10;
+//			}
+
 			biggestRowSumIndex = sumIn2[1];
 
-			System.out.println("Row: " + (sumIn2[1] + 1) + " contains greater Fitness of: " + (sumIn2[0]) + "\n");
-		} else if ((sumIn1[0]) == (sumIn2[0])) {
-			biggestRowSumIndex = sumIn1[1];
-			System.out.println("Row: " + (sumIn2[1] + 1) + " and " + (sumIn1[1] + 1) + " contains equal fitness of: "
-					+ (sumIn1[0]) + " \n");
-		}
+			System.out.println("Row: " + (sumIn2[1] + 1) + " contains greater/equal Fitness of: " + (sumIn2[0]) + "\n");
+		} 
 
 		return biggestRowSumIndex;
 
@@ -164,8 +164,13 @@ public class main {
 
 			if (currentSum > maxSum) {
 				maxSum = currentSum;
+			}		
+			// number zero
+			if (i == 0) {
+				
+				i = 0;
 			}
-
+			//End
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
 		}
 		System.out.println();
@@ -202,5 +207,34 @@ public class main {
 		// System.out.println("Random row 2: " + ranRow2);
 		System.arraycopy(tempMatrix[ranRow1], 0, matrixCopy[ranRow2], 0, (matrixCopy[0].length / 2));
 		System.arraycopy(tempMatrix[ranRow2], 0, matrixCopy[ranRow1], 0, (matrixCopy[0].length / 2));
+	}
+	
+	public static void sum3RandomRows(int[][] matrixCopy, int ranRow1, int ranRow2, int ranRow3) {
+//	public static void sum3RandomRows(int[][] matrixCopy) {
+
+//		int ranRow1 = 1;
+//		int ranRow2 = 1;
+//		int ranRow3 = 2;
+		
+		int sum = 0, sum2 = 0, sum3 = 0, sumTotal = 0;
+		int[] row = matrix[ranRow1];
+		for (int value : row) {
+			sum = sum + value;
+		}
+		
+		int[] row2 = matrix[ranRow2];
+		for (int value2 : row2) {
+			sum2 = sum2 + value2;
+		}
+		
+		int[] row3 = matrix[ranRow3];
+		for (int value3 : row3) {
+			sum3 = sum3 + value3;
+		}
+
+		sumTotal = sum2 + sum3 + sum;
+		System.out.println("\nThe Sum of rows " + (ranRow1 + 1) + " + " + (ranRow2 + 1) + " + " + (ranRow3 + 1) + ": are " + sumTotal);
+
+	
 	}
 }
