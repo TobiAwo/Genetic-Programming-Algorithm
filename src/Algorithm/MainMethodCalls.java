@@ -28,6 +28,7 @@ public class MainMethodCalls {
 		//\\\FitnessFunctions.evaluateOverallFitness(matrix);
 		// EVALUATE PHENOTYPE FITNESS
 		PhenotypeFitness.SeperateTOPhenotype(matrix);
+		PhenotypeFitness.evaluatePhenFitness(matrixPhen);
 
 		System.out.println();
 
@@ -46,6 +47,8 @@ public class MainMethodCalls {
 				fillMatrixNext(matrix, matrixNext, FitnessFunctions.evaluateRowsFitness(matrix,
 						(FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow())), 
 									(FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow()))), i);
+				
+				
 			}
 
 			// MUTATION
@@ -66,9 +69,10 @@ public class MainMethodCalls {
 		System.out.println();
 		//\\\FitnessFunctions.evaluateOverallFitness(matrix);
 		PhenotypeFitness.SeperateTOPhenotype(matrix);
+		PhenotypeFitness.evaluatePhenFitness(matrixPhen);
+
 
 	}
-
 
 	public static void fillMatrix(int[][] matrix) {
 
@@ -93,13 +97,13 @@ public class MainMethodCalls {
 
 	}
 	
-	public static int[][] getTempMatrix() {
-		return matrix;
+/*	public static int[][] getMatrixPhen() {
+		return matrixPhen;
 	}
 
-	public static void setTempMatrix(int[][] matrix) {
-		MainMethodCalls.matrix = matrix;
-	}
+	public static void setTempMatrix(int[][] matrixPhen) {
+		MainMethodCalls.matrixPhen = matrixPhen;
+	}*/
 
 /*	public static int getColumns() {
 	return columns;
