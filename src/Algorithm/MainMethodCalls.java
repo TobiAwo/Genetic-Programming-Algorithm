@@ -40,22 +40,19 @@ public class MainMethodCalls {
 			// TOURNAMENT SELECTION
 			for (int i = 0; i < rows; i++) {
 				//Entire Row Fitness Function			
-//				int[] OutputCountRowsFitness1 = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
-//				int[] OutputCountRowsFitness2 = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
-//				int OutputEvaluateRowsFitness = FitnessFunctions.evaluateRowsFitness(matrix,
-//																	(OutputCountRowsFitness1), (OutputCountRowsFitness2));
-//				fillMatrixNext(matrix, matrixNext, OutputEvaluateRowsFitness, i);
+				int[] OutputCountRowsFitness1 = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
+				int[] OutputCountRowsFitness2 = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
+				int OutputEvaluateRowsFitness = FitnessFunctions.evaluateRowsFitness(matrix,
+																	(OutputCountRowsFitness1), (OutputCountRowsFitness2));
+				fillMatrixNext(matrix, matrixNext, OutputEvaluateRowsFitness, i);
 
-				
 				//Phenotype Fitness Function
 				int[] OutputPhenFitness1 = PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
 				int[] OutputPhenFitness2 = PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
 				int OutputEvaluatePhenFitness = PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
 																	(OutputPhenFitness1), (OutputPhenFitness2));
 				fillMatrixNext(matrix, matrixNext, OutputEvaluatePhenFitness, i);
-				System.out.println("OutputCountRowsFitness\n"+OutputPhenFitness1[0] + "\t" + OutputPhenFitness1[1]);
-				System.out.println("OutputCountRowsFitnes2\n"+OutputPhenFitness2[0] + "\t" + OutputPhenFitness2[1]);
-				System.out.println("OutputEvaluateRowsFitness\n"+OutputEvaluatePhenFitness);
+
 			}
 
 			// MUTATION
