@@ -59,8 +59,6 @@ public class FitnessFunctions {
 			// System.out.println("Row: " + (sumIn2[1] + 1) + " contains greater/equal
 			// Fitness of: " + (sumIn2[0]) + "\n");
 		}
-
 		return biggestRowSumIndex;
-
 	}
 }
