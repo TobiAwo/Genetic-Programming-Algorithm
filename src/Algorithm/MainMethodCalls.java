@@ -25,10 +25,10 @@ public class MainMethodCalls {
 		printMatrix(matrix);
 		System.out.println();
 		// EVALUATE FITNESS
-		FitnessFunctions.evaluateOverallFitness(matrix);
+		//FitnessFunctions.evaluateOverallFitness(matrix);
 		// EVALUATE PHENOTYPE FITNESS
-		//PhenotypeFitness.SeperateTOPhenotype(matrix);
-		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);
+		PhenotypeFitness.SeperateTOPhenotype(matrix);
+		PhenotypeFitness.evaluatePhenFitness(matrixPhen);
 
 		System.out.println();
 
@@ -39,36 +39,23 @@ public class MainMethodCalls {
 			// EVALUATE FITNESS
 			// TOURNAMENT SELECTION
 			for (int i = 0; i < rows; i++) {
-				//Entire Row
-/*				fillMatrixNext(matrix, matrixNext, FitnessFunctions.evaluateRowsFitness(matrix,
-						(FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow())), 
-									(FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow()))), i);*/
-				
-				
-				int[] OutputCountRowsFitness = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
-				int[] OutputCountRowsFitness2 = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
-				
-				int OutputEvaluateRowsFitness = FitnessFunctions.evaluateRowsFitness(matrix,
-																	(OutputCountRowsFitness), (OutputCountRowsFitness2));
-				fillMatrixNext(matrix, matrixNext, OutputEvaluateRowsFitness, i);
-				System.out.println("OutputCountRowsFitness\n"+OutputCountRowsFitness[0] + "\t" + OutputCountRowsFitness[1]);
-				System.out.println("OutputCountRowsFitnes2\n"+OutputCountRowsFitness2[0] + "\t" + OutputCountRowsFitness2[1]);
-				System.out.println("OutputEvaluateRowsFitness\n"+OutputEvaluateRowsFitness);
+				//Entire Row Fitness Function			
+//				int[] OutputCountRowsFitness1 = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
+//				int[] OutputCountRowsFitness2 = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
+//				int OutputEvaluateRowsFitness = FitnessFunctions.evaluateRowsFitness(matrix,
+//																	(OutputCountRowsFitness1), (OutputCountRowsFitness2));
+//				fillMatrixNext(matrix, matrixNext, OutputEvaluateRowsFitness, i);
 
-
-
-//				fillMatrixNext(int[][] matrixCopy, int[][] matrixNextCopy, int biggestRowSumIndexIn, int nextRow);
-//				fillMatrixNext(matrix, matrixNext, ew, q, i);
-//				evaluateRowsFitness(int[][] matrix, int[] sumIn1, int[] sumIn2);
-//				evaluateRowsFitness(matrix, sumIn1, sumIn2);//big	I
-//				countRowsFitness(int matrix[][], int rowIndex);
-//				
-//				int[] enw = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
-//				int here = FitnessFunctions.evaluateRowsFitness(matrix,(enw),(enw));
-//				
-//				q = FitnessFunctions.countRowsFitness(matrix, RandomNumbers.getRandomRow());
 				
-				
+				//Phenotype Fitness Function
+				int[] OutputPhenFitness1 = PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
+				int[] OutputPhenFitness2 = PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
+				int OutputEvaluatePhenFitness = PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
+																	(OutputPhenFitness1), (OutputPhenFitness2));
+				fillMatrixNext(matrix, matrixNext, OutputEvaluatePhenFitness, i);
+				System.out.println("OutputCountRowsFitness\n"+OutputPhenFitness1[0] + "\t" + OutputPhenFitness1[1]);
+				System.out.println("OutputCountRowsFitnes2\n"+OutputPhenFitness2[0] + "\t" + OutputPhenFitness2[1]);
+				System.out.println("OutputEvaluateRowsFitness\n"+OutputEvaluatePhenFitness);
 			}
 
 			// MUTATION
@@ -87,9 +74,9 @@ public class MainMethodCalls {
 		System.out.println("--------------- \t Final Generation \t ----------------\n");
 		printMatrix(matrix);
 		System.out.println();
-		FitnessFunctions.evaluateOverallFitness(matrix);
-		//PhenotypeFitness.SeperateTOPhenotype(matrix);
-		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);
+		//FitnessFunctions.evaluateOverallFitness(matrix);
+		PhenotypeFitness.SeperateTOPhenotype(matrix);
+		PhenotypeFitness.evaluatePhenFitness(matrixPhen);
 
 
 	}

@@ -16,11 +16,6 @@ public class FitnessFunctions {
 			if (currentSum > maxSum) {
 				maxSum = currentSum;
 			}
-			// number zero
-			// if (i == 0) {
-			// i = 0;
-			// }
-			// End
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
 		}
 		// System.out.println();

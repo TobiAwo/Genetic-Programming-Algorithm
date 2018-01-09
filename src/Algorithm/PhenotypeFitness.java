@@ -45,14 +45,14 @@ public class PhenotypeFitness {
 		System.out.println("Highest Phenotype Fitness: " + maxSum);
 	}
 	
-	public static void countRowsFitnessPhenotype(int matrixPhen[][], int rowIndex) {
+	public static int[] countRowsFitnessPhenotype(int matrixPhen[][], int rowIndex) {
 
-		FitnessFunctions.countRowsFitness(matrixPhen, rowIndex);
+		return FitnessFunctions.countRowsFitness(matrixPhen, rowIndex);
 	}
 	
-	public static void evaluateRowsFitness(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {
+	public static int evaluatePhenRowsFitness(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {
 		
-		FitnessFunctions.evaluateRowsFitness(matrixPhen, sumIn1, sumIn2);
+		return FitnessFunctions.evaluateRowsFitness(matrixPhen, sumIn1, sumIn2);
 
 	}
 
