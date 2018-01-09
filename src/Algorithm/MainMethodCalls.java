@@ -59,10 +59,10 @@ public class MainMethodCalls {
 			}
 
 			// MUTATION
-			//Mutation.mutation(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomColumn());
+			Mutation.mutation(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomColumn());
 
 			// CROSSOVER
-			//Crossover.crossover(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomRow());
+			Crossover.crossover(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomRow());
 
 			// UPDATE POPULATION
 			for (int j = 0; j < rows; j++) {
