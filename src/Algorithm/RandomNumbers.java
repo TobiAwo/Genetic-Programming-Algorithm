@@ -1,6 +1,4 @@
 package Algorithm;
-//import MainMethodCalls;
-import java.util.Random;
 
 public class RandomNumbers {
 	
@@ -25,20 +23,19 @@ public class RandomNumbers {
 		return randomNum;
 	}
 	
-	public static int getRandomTotalSum() {
-		int minimum = 0;
-		int maximum = FitnessFunctions.overallPopulationFitness(MainMethodCalls.matrix);
+	public static int rouletteWheelSelection(int[][] matrix) {
+		int totalSum = 0, addedSum = 0, minimum = 0, maximum;
+		for (int i = 0; i < matrix.length; i++) {
+			for (int k = 0; k < matrix[i].length; k++) {
+				totalSum += matrix[i][k];
+			}
+		}
+		maximum = totalSum;
 		int randomNum = minimum + (int) (Math.random() * maximum);
-		System.out.println("random index: " + randomNum);
-		return randomNum;
-	}
-	
-	public static int rouletteWheelSelection(int [][] matrix, int totalSum, int randomNum) {
-		totalSum = FitnessFunctions.overallPopulationFitness(matrix);
-		int addedSum = 0;
+		//System.out.println("random index: " + randomNum);
 
-		for (int i = 0; i < MainMethodCalls.rows; i++) {
-			for (int k = 0; k < MainMethodCalls.columns; k++) {
+		for (int i = 0; i < matrix.length; i++) {
+			for (int k = 0; k < matrix[i].length; k++) {
 				addedSum += matrix[i][k];
 			}
 			if (addedSum >= randomNum) {

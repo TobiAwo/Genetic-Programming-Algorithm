@@ -22,14 +22,12 @@ public class PhenotypeFitness {
 	}
 	
 	public static void evaluatePhenFitness(int[][] matrixPhen) {
-		int maxSum = 0;
-		int sum = 0;
-		System.out.println("\nCreatures Phenotype Fitness");// \\
+		int maxSum = 0, sum;
+		System.out.println("\nCreatures Phenotype Fitness");
 		for (int i = 0; i < matrixPhen.length; i++) {
 			sum = 0;
 			int currentSum = 0;
 			for (int j = 0; j < matrixPhen[i].length; j++) {
-
 				sum += matrixPhen[i][j];
 				currentSum += matrixPhen[i][j];
 			}
@@ -45,14 +43,10 @@ public class PhenotypeFitness {
 	}
 	
 	public static int[] countRowsFitnessPhenotype(int matrixPhen[][], int rowIndex) {
-
 		return FitnessFunctions.getRowFitness(matrixPhen, rowIndex);
 	}
 	
 	public static int evaluatePhenRowsFitness(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {
-		
 		return FitnessFunctions.evaluateRowsFitness(matrixPhen, sumIn1, sumIn2);
-
 	}
-
 }

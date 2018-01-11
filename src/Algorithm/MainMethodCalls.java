@@ -28,7 +28,7 @@ public class MainMethodCalls {
 		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();
-		RandomNumbers.rouletteWheelSelection(matrix,FitnessFunctions.overallPopulationFitness(matrix), RandomNumbers.getRandomTotalSum());
+		RandomNumbers.rouletteWheelSelection(matrix);
 	    System.exit(1);
 		for (int g = 0; g < GEN; g++) {
 			System.out.println("---------------- \t New Generation \t ----------------");

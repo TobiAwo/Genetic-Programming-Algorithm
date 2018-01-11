@@ -54,8 +54,8 @@ public class FitnessFunctions {
 	
 	public static int overallPopulationFitness(int[][]matrix) {
 		int totalSum = 0;
-		for (int i = 0; i < MainMethodCalls.rows; i++) {
-			for (int k = 0; k < MainMethodCalls.columns; k++) {
+		for (int i = 0; i <  matrix.length; i++) {
+			for (int k = 0; k < matrix[i].length; k++) {
 				totalSum += matrix[i][k];
 			}
 		}
