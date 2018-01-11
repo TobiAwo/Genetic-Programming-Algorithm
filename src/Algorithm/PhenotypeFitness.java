@@ -1,19 +1,18 @@
 package Algorithm;
-import java.util.Scanner;
 //import src.Algorithm.Scanner;
 
 public class PhenotypeFitness {
 
 	public static void SeperateTOPhenotype(int[][] matrixCopy) {
 		//1,1,1,1,1,1  k=4, col=0 //0,1,1,1,1,0   x,1,x,0,k
-		int k = 3,  xt = 0, count = 0;
+		int k = 3,  xt = 0;
 		int[][] matrixPhen = new int[MainMethodCalls.rows][k];
 
 		for (int row = 0; row < MainMethodCalls.rows; row++) {
 			for (int col = 0; col < (k - 1); col++) {
 				for (int x = 0; x < MainMethodCalls.rows; x++) {
 					
-					System.arraycopy(matrixCopy[x], 0, matrixPhen[x], 0, k);
+					System.arraycopy(matrixCopy[x], xt, matrixPhen[x], 0, k);
 				}
 			}
 		}
@@ -47,7 +46,7 @@ public class PhenotypeFitness {
 	
 	public static int[] countRowsFitnessPhenotype(int matrixPhen[][], int rowIndex) {
 
-		return FitnessFunctions.countRowsFitness(matrixPhen, rowIndex);
+		return FitnessFunctions.getRowFitness(matrixPhen, rowIndex);
 	}
 	
 	public static int evaluatePhenRowsFitness(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {

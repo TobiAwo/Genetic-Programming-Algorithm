@@ -2,14 +2,14 @@ package Algorithm;
 
 public class FitnessFunctions {
 
-	public static void evaluateOverallFitness(int[][] matrix) {/// 0.5
-		int maxSum = 0, sum = 0;
-		System.out.println("Creatures Fitness");// \\
+	/** 1 - Gets fitness of every chromosome in the population **/
+	public static void DisplayEachRowFitness(int[][] matrix) {
+		int maxSum = 0, sum;
+		System.out.println("Creatures Fitness");
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
 			int currentSum = 0;
 			for (int j = 0; j < matrix[i].length; j++) {
-
 				sum += matrix[i][j];
 				currentSum += matrix[i][j];
 			}
@@ -20,30 +20,25 @@ public class FitnessFunctions {
 		}
 		// System.out.println();
 		System.out.println("Highest Fitness: " + maxSum);
-
 	}
-
-	public static int[] countRowsFitness(int matrix[][], int rowIndex) {// compare rows//1
+	
+	/** 2 - Gets fitness and index of individual chromosome **/
+	public static int[] getRowFitness(int matrix[][], int rowIndex) {
 		int sum = 0;
 		int[] row = matrix[rowIndex];
 		for (int value : row) {
 			sum = sum + value;
 		}
-		if (sum == 0) {
-
-			sum = 0;
-		}
 		// System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);
-
 		int ar[] = new int[2];
 		ar[0] = sum;
 		ar[1] = rowIndex;
 
 		return ar;
 	}
-
-	public static int evaluateRowsFitness(int[][] matrix, int[] sumIn1, int[] sumIn2) {//////////////////// 2
-
+	
+	/** 3 - Compares fitness of two chosen chromosome and gets highest **/
+	public static int evaluateRowsFitness(int[][] matrix, int[] sumIn1, int[] sumIn2) {
 		int biggestRowSumIndex = 0;
 		if ((sumIn1[0]) > (sumIn2[0])) {
 			biggestRowSumIndex = sumIn1[1];
@@ -55,5 +50,16 @@ public class FitnessFunctions {
 			// Fitness of: " + (sumIn2[0]) + "\n");
 		}
 		return biggestRowSumIndex;
+	}
+	
+	public static int overallPopulationFitness(int[][]matrix) {
+		int totalSum = 0;
+		for (int i = 0; i < MainMethodCalls.rows; i++) {
+			for (int k = 0; k < MainMethodCalls.columns; k++) {
+				totalSum += matrix[i][k];
+			}
+		}
+	//System.out.println("sum: " + totalSum);
+	return totalSum;
 	}
 }

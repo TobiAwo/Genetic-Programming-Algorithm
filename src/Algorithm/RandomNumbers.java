@@ -25,25 +25,27 @@ public class RandomNumbers {
 		return randomNum;
 	}
 	
-	public static int rouletteWheelSelection(double[] wts, Random rnd) {
-
-		  int selected = 0;
-		    double total = wts[0];
-
-		    for( int i = 1; i < wts.length; i++ ) {
-		        total += wts[i];            
-		        if( rnd.nextDouble() <= (wts[i] / total)) 
-		        	selected = i;
-		    }
-
-		    return selected;   
+	public static int getRandomTotalSum() {
+		int minimum = 0;
+		int maximum = FitnessFunctions.overallPopulationFitness(MainMethodCalls.matrix);
+		int randomNum = minimum + (int) (Math.random() * maximum);
+		System.out.println("random index: " + randomNum);
+		return randomNum;
 	}
 	
-	public static void FitnessBasedonFitness(int[][] tempMatrix) {
-		int mAXFitness = 0, fitness = 0, difference = 0, mAXdifference = 0;
-		int bestFitness = (difference/mAXdifference) + (fitness/mAXFitness);
+	public static int rouletteWheelSelection(int [][] matrix, int totalSum, int randomNum) {
+		totalSum = FitnessFunctions.overallPopulationFitness(matrix);
+		int addedSum = 0;
 
-
+		for (int i = 0; i < MainMethodCalls.rows; i++) {
+			for (int k = 0; k < MainMethodCalls.columns; k++) {
+				addedSum += matrix[i][k];
+			}
+			if (addedSum >= randomNum) {
+				System.out.println("i: " + i);
+				return i;
+			}
+		}
+		return -1;
 	}
-
 }
