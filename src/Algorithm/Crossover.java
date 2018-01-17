@@ -15,10 +15,10 @@ public class Crossover {
 		System.arraycopy(tempMatrix[ranRow1], 0, matrixCopy[ranRow2], 0, (matrixCopy[0].length / 2));
 		System.arraycopy(tempMatrix[ranRow2], 0, matrixCopy[ranRow1], 0, (matrixCopy[0].length / 2));
 	}
-	
+
 	public static void crossoverGuided(int[][] matrix, int ranRow1Fitness) {
 		// int[][] tempMatrix = new int[matrix.length][matrix[i].length];
-		int difference = 0;
+		int difference = 0, mAXdifference = 0;
 		ranRow1Fitness = RandomNumbers.rouletteWheelSelection(matrix);
 
 		for (int i = 0; i < matrix.length; i++) {
@@ -28,14 +28,23 @@ public class Crossover {
 			}
 			if (ranRow1Fitness == ranRow2Fitness) {
 				difference = 0;
+				if (difference > mAXdifference) {
+					mAXdifference = difference;
+				}
 			}
 			if (ranRow1Fitness > ranRow2Fitness) {
 				difference = (ranRow1Fitness - ranRow2Fitness);
+				if (difference > mAXdifference) {
+					mAXdifference = difference;
+				}
 			}
 			if (ranRow1Fitness < ranRow2Fitness) {
 				difference = (ranRow2Fitness - ranRow1Fitness);
+				if (difference > mAXdifference) {
+					mAXdifference = difference;
+				}
 			}
 		}
-
+		System.out.println("Highest Fitness: " + mAXdifference);
 	}
 }
