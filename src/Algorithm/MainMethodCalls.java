@@ -28,6 +28,8 @@ public class MainMethodCalls {
 		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();
+		Crossover.crossoverGuided(matrixPhen);
+		System.exit(0);
 		for (int g = 0; g < GEN; g++) {
 			System.out.println("---------------- \t New Generation \t ----------------");
 			/** - EVALUATE FITNESS - **/

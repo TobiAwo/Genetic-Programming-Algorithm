@@ -29,11 +29,9 @@ public class PhenotypeFitness {
 			for (int j = 0; j < matrixPhen[i].length; j++) {
 				sum += matrixPhen[i][j];
 			}
-
 			if (sum > maxSum) {
 				maxSum = sum;
 			}
-
 			System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum);
 		}
 		// System.out.println();

@@ -34,6 +34,7 @@ public class RandomNumbers {
 		maximum = totalSum;
 		/** randomNum to stop index at **/
 		int randomNum = minimum + (int) (Math.random() * maximum);
+		//System.out.println("random Number: " + randomNum);
 		for (int i = 0; i < matrix.length; i++) {
 			for (int k = 0; k < matrix[i].length; k++) {
 				addedSum += matrix[i][k];

@@ -16,35 +16,55 @@ public class Crossover {
 		System.arraycopy(tempMatrix[ranRow2], 0, matrixCopy[ranRow1], 0, (matrixCopy[0].length / 2));
 	}
 
-	public static void crossoverGuided(int[][] matrix, int ranRow1Fitness) {
-		// int[][] tempMatrix = new int[matrix.length][matrix[i].length];
-		int difference = 0, mAXdifference = 0;
-		ranRow1Fitness = RandomNumbers.rouletteWheelSelection(matrix);
+	public static void crossoverGuided(int[][] matrix) {
+		int difference = 0, mAXdifference = 0, indexRow1;
+		indexRow1 = RandomNumbers.rouletteWheelSelection(matrix);
+		System.out.println("---- Row 1 index------: " + (indexRow1 + 1));
 
-		for (int i = 0; i < matrix.length; i++) {
-			int ranRow2Fitness = 0;
-			for (int k = 0; k < matrix[i].length; k++) {
-				ranRow2Fitness += matrix[i][k];
+		int fitnessRow1 = 0;
+		int[] row = matrix[indexRow1];
+		for (int value : row) {
+			fitnessRow1 = fitnessRow1 + value;
+		}
+		System.out.println("---- Row 1 Fitness--------: " + fitnessRow1 + "\n");
+
+		// int[][] tempMatrix = new int[matrix.length][matrix[i].length];
+
+		for (int indexRow2 = 0; indexRow2 < matrix.length; indexRow2++) {
+			int fitnessRow2 = 0;
+			for (int k = 0; k < matrix[indexRow2].length; k++) {
+				fitnessRow2 += matrix[indexRow2][k];
 			}
-			if (ranRow1Fitness == ranRow2Fitness) {
+			System.out.println("---- Row 2 index------: " + (indexRow2 + 1));
+			System.out.println("---- Row 2 fitness--------: " + (fitnessRow2));
+
+			if (fitnessRow1 == fitnessRow2) {
+				// System.out.println("rows are the same");
+				System.out.println("rows are the same\n");
 				difference = 0;
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
+					System.out.println("max difference: " + mAXdifference  + "\n");
 				}
 			}
-			if (ranRow1Fitness > ranRow2Fitness) {
-				difference = (ranRow1Fitness - ranRow2Fitness);
+			if (fitnessRow1 > fitnessRow2) {
+				System.out.println("row 1 bigger\n");
+				difference = (fitnessRow1 - fitnessRow2);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
+					System.out.println("max difference: " + mAXdifference  + "\n");
+
 				}
 			}
-			if (ranRow1Fitness < ranRow2Fitness) {
-				difference = (ranRow2Fitness - ranRow1Fitness);
+			if (fitnessRow1 < fitnessRow2) {
+				System.out.println("row 2 bigger\n");
+				difference = (fitnessRow2 - fitnessRow1);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
+					System.out.println("max difference: " + mAXdifference  + "\n");
 				}
 			}
 		}
-		System.out.println("Highest Fitness: " + mAXdifference);
+		System.out.println("\nlast max difference: " + mAXdifference);
 	}
 }
