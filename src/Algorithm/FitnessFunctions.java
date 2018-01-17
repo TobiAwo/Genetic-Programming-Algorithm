@@ -8,20 +8,24 @@ public class FitnessFunctions {
 		System.out.println("Creatures Fitness");
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
-			int currentSum = 0;
 			for (int j = 0; j < matrix[i].length; j++) {
 				sum += matrix[i][j];
-				currentSum += matrix[i][j];
 			}
-			if (currentSum > maxSum) {
-				maxSum = currentSum;
+			if (sum > maxSum) {
+				maxSum = sum;
 			}
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
+			returnSum(sum);
 		}
 		// System.out.println();
 		System.out.println("Highest Fitness: " + maxSum);
 	}
-	
+	///might need to delete
+	private static int returnSum(int sum) {
+		//System.out.println("sum" + sum);
+		return sum;
+	}
+
 	/** 2 - Gets fitness and index of individual chromosome **/
 	public static int[] getRowFitness(int matrix[][], int rowIndex) {
 		int sum = 0;

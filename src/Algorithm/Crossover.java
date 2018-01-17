@@ -16,10 +16,26 @@ public class Crossover {
 		System.arraycopy(tempMatrix[ranRow2], 0, matrixCopy[ranRow1], 0, (matrixCopy[0].length / 2));
 	}
 	
-	public static void crossoverGuided(int[][] matrixCopy, int ranRow1, int ranRow2) {
+	public static void crossoverGuided(int[][] matrix, int ranRow1Fitness) {
+		// int[][] tempMatrix = new int[matrix.length][matrix[i].length];
+		int difference = 0;
+		ranRow1Fitness = RandomNumbers.rouletteWheelSelection(matrix);
 
-		int[][] tempMatrix = new int[MainMethodCalls.rows][MainMethodCalls.columns];
+		for (int i = 0; i < matrix.length; i++) {
+			int ranRow2Fitness = 0;
+			for (int k = 0; k < matrix[i].length; k++) {
+				ranRow2Fitness += matrix[i][k];
+			}
+			if (ranRow1Fitness == ranRow2Fitness) {
+				difference = 0;
+			}
+			if (ranRow1Fitness > ranRow2Fitness) {
+				difference = (ranRow1Fitness - ranRow2Fitness);
+			}
+			if (ranRow1Fitness < ranRow2Fitness) {
+				difference = (ranRow2Fitness - ranRow1Fitness);
+			}
+		}
 
 	}
-
 }
