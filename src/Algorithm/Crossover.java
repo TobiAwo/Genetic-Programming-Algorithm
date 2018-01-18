@@ -3,11 +3,10 @@ package Algorithm;
 public class Crossover {
 
 	public static void crossover(int[][] matrixCopy, int ranRow1, int ranRow2) {
-
+		
 		int[][] tempMatrix = new int[MainMethodCalls.rows][MainMethodCalls.columns];
-
-		for (int row = 0; row < MainMethodCalls.rows; row++) {
-			for (int col = 0; col < MainMethodCalls.columns; col++) {
+		for (int row = 0; row < matrixCopy.length; row++) {
+			for (int col = 0; col < matrixCopy[row].length; col++) {
 
 				tempMatrix[row][col] = matrixCopy[row][col];
 			}
@@ -16,35 +15,34 @@ public class Crossover {
 		System.arraycopy(tempMatrix[ranRow2], 0, matrixCopy[ranRow1], 0, (matrixCopy[0].length / 2));
 	}
 
-	public static void crossoverGuided(int[][] matrix) {
-		int difference = 0, mAXdifference = 0, indexRow1, indexMax = 0;
-		indexRow1 = RandomNumbers.rouletteWheelSelection(matrix);
+	public static void crossoverGuided(int[][] matrixPhen) {
+		int difference = 0, mAXdifference = 0, indexRow1, indexMaxDifference = 0;
+		indexRow1 = RandomNumbers.rouletteWheelSelection(matrixPhen);
 		System.out.println("---- Row 1 index------: " + (indexRow1 + 1));
 
 		int fitnessRow1 = 0;
-		int[] row = matrix[indexRow1];
+		int[] row = matrixPhen[indexRow1];
 		for (int value : row) {
 			fitnessRow1 = fitnessRow1 + value;
 		}
 		System.out.println("---- Row 1 Fitness--------: " + fitnessRow1 + "\n");
 
-		// int[][] tempMatrix = new int[matrix.length][matrix[i].length];
+		// int[][] tempMatrix = new int[matrixPhen.length][matrixPhen[i].length];
 
-		for (int indexRow2 = 0; indexRow2 < matrix.length; indexRow2++) {
+		for (int indexRow2 = 0; indexRow2 < matrixPhen.length; indexRow2++) {
 			int fitnessRow2 = 0;
-			for (int k = 0; k < matrix[indexRow2].length; k++) {
-				fitnessRow2 += matrix[indexRow2][k];
+			for (int k = 0; k < matrixPhen[indexRow2].length; k++) {
+				fitnessRow2 += matrixPhen[indexRow2][k];
 			}
 			System.out.println("---- Row 2 index------: " + (indexRow2 + 1));
 			System.out.println("---- Row 2 fitness--------: " + (fitnessRow2));
 
 			if (fitnessRow1 == fitnessRow2) {
-				// System.out.println("rows are the same");
 				System.out.println("rows are the same\n");
 				difference = 0;
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
-					indexMax = indexRow2;
+					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference  + "\n");
 				}
 			}
@@ -53,7 +51,7 @@ public class Crossover {
 				difference = (fitnessRow1 - fitnessRow2);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
-					indexMax = indexRow2;
+					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference  + "\n");
 
 				}
@@ -63,19 +61,23 @@ public class Crossover {
 				difference = (fitnessRow2 - fitnessRow1);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
-					indexMax = indexRow2;
+					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference  + "\n");
 				}
 			}
 		}
 		System.out.println("\nlast max difference: " + mAXdifference);
-		System.out.println("\nlast max difference index: " + (indexMax+1));
+		System.out.println("\nlast max difference index: " + (indexMaxDifference+1));
 
 		int fitnessRow2 = 0;
-		row = matrix[indexMax];
+		row = matrixPhen[indexMaxDifference];
 		for (int value : row) {
 			fitnessRow2 = fitnessRow2 + value;
 		}
 		System.out.println("---- Row 2 Fitness--------: " + (fitnessRow2) + "\n");
+		int[][]matrix = MainMethodCalls.matrix;
+		crossover(MainMethodCalls.matrix, indexRow1, indexMaxDifference);
+		MainMethodCalls.printMatrix(matrix);
+
 	}
 }
