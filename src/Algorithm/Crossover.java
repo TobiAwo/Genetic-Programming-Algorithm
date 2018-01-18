@@ -17,7 +17,7 @@ public class Crossover {
 	}
 
 	public static void crossoverGuided(int[][] matrix) {
-		int difference = 0, mAXdifference = 0, indexRow1;
+		int difference = 0, mAXdifference = 0, indexRow1, indexMax = 0;
 		indexRow1 = RandomNumbers.rouletteWheelSelection(matrix);
 		System.out.println("---- Row 1 index------: " + (indexRow1 + 1));
 
@@ -44,6 +44,7 @@ public class Crossover {
 				difference = 0;
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
+					indexMax = indexRow2;
 					System.out.println("max difference: " + mAXdifference  + "\n");
 				}
 			}
@@ -52,6 +53,7 @@ public class Crossover {
 				difference = (fitnessRow1 - fitnessRow2);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
+					indexMax = indexRow2;
 					System.out.println("max difference: " + mAXdifference  + "\n");
 
 				}
@@ -61,10 +63,19 @@ public class Crossover {
 				difference = (fitnessRow2 - fitnessRow1);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
+					indexMax = indexRow2;
 					System.out.println("max difference: " + mAXdifference  + "\n");
 				}
 			}
 		}
 		System.out.println("\nlast max difference: " + mAXdifference);
+		System.out.println("\nlast max difference index: " + (indexMax+1));
+
+		int fitnessRow2 = 0;
+		row = matrix[indexMax];
+		for (int value : row) {
+			fitnessRow2 = fitnessRow2 + value;
+		}
+		System.out.println("---- Row 2 Fitness--------: " + (fitnessRow2) + "\n");
 	}
 }
