@@ -16,7 +16,7 @@ public class FitnessFunctions {
 			}
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
 		}
-		// System.out.println();
+		//// System.out.println();
 		System.out.println("Highest Fitness: " + maxSum);
 		return maxSum;
 	}

@@ -16,24 +16,10 @@ public class Crossover {
 	}
 
 	public static void crossoverGuided(int[][] matrixPhen) {
-		/////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		int maxSum = 0, sum;
-		System.out.println("Creatures Fitness");
-		for (int i = 0; i < matrixPhen.length; i++) {
-			sum = 0;
-			for (int j = 0; j < matrixPhen[i].length; j++) {
-				sum += matrixPhen[i][j];
-			}
-			if (sum > maxSum) {
-				maxSum = sum;
-			}
-			//System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
-		}
-		// System.out.println();
-		System.out.println("Highest Fitness: " + maxSum);
-		/////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			
+		int maxFitness = 0;			
 		//int[][] matrix = MainMethodCalls.matrix;
+		// int[][] tempMatrix = new int[matrixPhen.length][matrixPhen[i].length];
+
 		FitnessFunctions.DisplayEachRowFitness(matrixPhen);
 		int difference = 0, mAXdifference = 0, indexRow1, indexMaxDifference = 0;
 		
@@ -47,20 +33,26 @@ public class Crossover {
 		}
 		System.out.println("---- Row 1 Fitness--------: " + fitnessRow1 + "\n");
 
-		// int[][] tempMatrix = new int[matrixPhen.length][matrixPhen[i].length];
 
 		for (int indexRow2 = 0; indexRow2 < matrixPhen.length; indexRow2++) {
 			int fitnessRow2 = 0;
 			for (int k = 0; k < matrixPhen[indexRow2].length; k++) {
-				
+
 				fitnessRow2 += matrixPhen[indexRow2][k];
 			}
+			if (fitnessRow2 > maxFitness) {
+				maxFitness = fitnessRow2;
+			}
+			//System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
+			//System.out.println("Highest Fitness: " + maxFitness);
+
 			System.out.println("---- Row 2 index------: " + (indexRow2 + 1));
 			System.out.println("---- Row 2 fitness--------: " + (fitnessRow2));
 
 			if (fitnessRow1 == fitnessRow2) {
 				System.out.println("rows are the same\n");
 				difference = 0;
+				//
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
 					indexMaxDifference = indexRow2;
@@ -70,25 +62,41 @@ public class Crossover {
 			if (fitnessRow1 > fitnessRow2) {
 				System.out.println("row 1 bigger\n");
 				difference = (fitnessRow1 - fitnessRow2);
+				//
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
 					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference + "\n");
-
 				}
 			}
 			if (fitnessRow1 < fitnessRow2) {
 				System.out.println("row 2 bigger\n");
 				difference = (fitnessRow2 - fitnessRow1);
+				//
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
 					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference + "\n");
 				}
 			}
-		}
+		}//i stops here
 		System.out.println("\nlast max difference: " + mAXdifference);
 		System.out.println("\nlast max difference index: " + (indexMaxDifference + 1));
+		
+		//
+		//
+		int sum =0;
+		for (int i = 0; i < matrixPhen.length; i++) {
+			sum = 0;
+			for (int j = 0; j < matrixPhen[i].length; j++) {
+				sum += matrixPhen[i][j];
+			}
+			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
+		}
+
+		
+		//
+		//
 
 		int fitnessRow2 = 0;
 		row = matrixPhen[indexMaxDifference];
@@ -99,36 +107,11 @@ public class Crossover {
 		int[][] matrix = MainMethodCalls.matrix;
 		crossover(MainMethodCalls.matrix, indexRow1, indexMaxDifference);
 	
-		///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-		System.out.println("Creatures Evaluationn for Equation");
-		for (int i = 0; i < matrixPhen.length; i++) {
-			int fitnessJ = 0;
-			for (int j = 0; j < matrixPhen[i].length; j++) {
-				fitnessJ += matrixPhen[i][j];
-			}
-			/////////////////////////////Equation Here\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-			System.out.println("Fitness of Creature " + (i + 1) + ": " + fitnessJ);
-			
-			int formulaMax = 0, differenceIJ = 0, finalChosenJ= 0;
-			
-			int formula = (differenceIJ/mAXdifference) + (fitnessJ/maxSum);
-			
-			
-			///////////////////////////////Equation\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\			
-		}
-		// System.out.println();
-		System.out.println("Highest Fitness: " + maxSum);
-
-		
-		///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
 		
 		///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 		
-		int formulaMax = 0, differenceIJ = 0, fitnessJ = 0, maxFitness = 0, finalChosenJ= 0;
-		maxFitness = maxSum;
-		int formula = (differenceIJ/mAXdifference) + (fitnessJ/maxFitness);
+		int formulaMax = 0, differenceIJ = 0, fitnessJ = 0, finalChosenJ= 0;
+		int formula = (differenceIJ/mAXdifference//) + (fitnessJ/maxFitness//);
 		if (formula>formulaMax) {
 			formulaMax = formula;
 		//finalChosenJ;
