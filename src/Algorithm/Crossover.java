@@ -22,6 +22,8 @@ public class Crossover {
 
 		FitnessFunctions.DisplayEachRowFitness(matrixPhen);
 		int difference = 0, mAXdifference = 0, indexRow1, indexMaxDifference = 0;
+		//int differenceIJ = 0, equation = 0, equationBest = 0, jindexMaxEquation = 0;
+
 		
 		indexRow1 = RandomNumbers.rouletteWheelSelection(matrixPhen);////gets index one
 		System.out.println("---- Row 1 index------: " + (indexRow1 + 1)); //prints index one for me to see
@@ -37,7 +39,6 @@ public class Crossover {
 		for (int indexRow2 = 0; indexRow2 < matrixPhen.length; indexRow2++) {
 			int fitnessRow2 = 0;
 			for (int k = 0; k < matrixPhen[indexRow2].length; k++) {
-
 				fitnessRow2 += matrixPhen[indexRow2][k];
 			}
 			if (fitnessRow2 > maxFitness) {
@@ -79,84 +80,17 @@ public class Crossover {
 		}//i stops here
 		System.out.println("\nlast max difference: " + mAXdifference);
 		System.out.println("\nlast max difference index: " + (indexMaxDifference + 1));
-		
-		//								Formula									\\
-		//													   					\\
-		for (int jindex = 0; jindex < matrixPhen.length; jindex++) {//new loop
-			int JsumFitness = 0;
-			for (int coll = 0; coll < matrixPhen[jindex].length; coll++) {
-				JsumFitness += matrixPhen[jindex][coll];
-			}
-			System.out.println("Fitness of Creature " + (jindex + 1) + ": " + JsumFitness);
-			
-			//int differenceIJ = JsumFitness - fitnessRow1;
-			
-			
-			
-			int differenceIJ = 0, equation = 0, equationBest = 0, jindexMaxEquation = 0;
-					
-			
-			if (fitnessRow1 == JsumFitness) {
-				System.out.println("rows are the same\n");
-				differenceIJ = 0;
-				equationBest = (differenceIJ/mAXdifference) + (JsumFitness/maxFitness);
-				if (equation > equationBest) {
-					equationBest = equation;
-					jindexMaxEquation = jindex;	
-				}
-			}
-			if (fitnessRow1 > JsumFitness) {
-				System.out.println("row 1 bigger\n");
-				differenceIJ = (fitnessRow1 - JsumFitness);
-				equationBest = (differenceIJ/mAXdifference) + (JsumFitness/maxFitness);
-				if (equation > equationBest) {
-					equationBest = equation;
-					jindexMaxEquation = jindex;
-					System.out.println("max equation: " + jindexMaxEquation + "\n");
-				}				
-			}
-			if (fitnessRow1 < JsumFitness) {
-				System.out.println("row 2 bigger\n");
-				differenceIJ = (JsumFitness - fitnessRow1);
-				equationBest = (differenceIJ/mAXdifference) + (JsumFitness/maxFitness);
-				if (equation > equationBest) {
-					equationBest = equation;
-					jindexMaxEquation = jindex;
-					System.out.println("max equation: " + jindexMaxEquation + "\n");
-				}
-			}
-			
-			
-			
-			
-			
-			
-		}
-
-		
-		//																		\\
-		//								Formula				   					\\
-
+		//	From here
+		// Ended Here
 		int fitnessRow2 = 0;
 		row = matrixPhen[indexMaxDifference];
 		for (int value : row) {
-			fitnessRow2 = fitnessRow2 + value;
+			fitnessRow2 = value + fitnessRow2;
 		}
 		System.out.println("---- Row 2 Fitness--------: " + (fitnessRow2) + "\n");
 		int[][] matrix = MainMethodCalls.matrix;
 		crossover(MainMethodCalls.matrix, indexRow1, indexMaxDifference);
 	
-		
-		///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		
-		int formulaMax = 0, differenceIJ = 0, fitnessJ = 0, finalChosenJ= 0;
-		int formula = (differenceIJ/mAXdifference) + (fitnessJ/maxFitness);
-		if (formula>formulaMax) {
-			formulaMax = formula;
-		//finalChosenJ;
-		}
-		///////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-		MainMethodCalls.printMatrix(matrix);
-
+		//MainMethodCalls.printMatrix(matrix);
 	}
 }

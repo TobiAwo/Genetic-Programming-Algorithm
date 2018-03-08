@@ -3,7 +3,7 @@ package Algorithm;
 public class FitnessFunctions {
     
 	/** 1 - Gets fitness of every chromosome in the population **/
-	public static int DisplayEachRowFitness(int[][] matrix) {
+	public static void DisplayEachRowFitness(int[][] matrix) {
 		int maxSum = 0, sum;
 		System.out.println("Creatures Fitness");
 		for (int i = 0; i < matrix.length; i++) {
@@ -16,9 +16,8 @@ public class FitnessFunctions {
 			}
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
 		}
-		//// System.out.println();
+		// System.out.println();
 		System.out.println("Highest Fitness: " + maxSum);
-		return maxSum;
 	}
 
 	/** 2 - Fitness Function - Gets fitness and index of individual chromosome **/

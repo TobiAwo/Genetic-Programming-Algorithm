@@ -30,7 +30,7 @@ public class MainMethodCalls {
 		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();//afterthis
 		FitnessFunctions.DisplayEachRowFitness(matrix);
-		//Crossover.crossoverGuided(matrixPhen);
+		Crossover.crossover(matrixPhen, 1, 1);
 		//FitnessFunctions.maxSum();
 		System.exit(0);
 		for (int g = 0; g < GEN; g++) {
