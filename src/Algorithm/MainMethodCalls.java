@@ -29,8 +29,13 @@ public class MainMethodCalls {
 		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();//afterthis
+<<<<<<< HEAD
 		//FitnessFunctions.DisplayEachRowFitness(matrix);
 		Crossover.crossoverGuided(matrixPhen);
+=======
+		FitnessFunctions.DisplayEachRowFitness(matrix);
+		Crossover.crossover(matrixPhen, 1, 1);
+>>>>>>> 67274c99dbb35493cfba49dd9cb4c278f0353bc0
 		//FitnessFunctions.maxSum();
 		System.exit(0);
 		for (int g = 0; g < GEN; g++) {

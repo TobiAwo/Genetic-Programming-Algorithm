@@ -20,21 +20,20 @@ public class Crossover {
 		//int[][] matrix = MainMethodCalls.matrix;
 		// int[][] tempMatrix = new int[matrixPhen.length][matrixPhen[i].length];
 
-		//FitnessFunctions.DisplayEachRowFitness(matrixPhen);
+
+		FitnessFunctions.DisplayEachRowFitness(matrixPhen);
 		int difference = 0, mAXdifference = 0, indexRow1, indexMaxDifference = 0;
 		//int differenceIJ = 0, equation = 0, equationBest = 0, jindexMaxEquation = 0;
 
 		
-		//indexRow1 = RandomNumbers.rouletteWheelSelection(matrixPhen);////gets index one
-		indexRow1 = 1;
+	indexRow1 = RandomNumbers.rouletteWheelSelection(matrixPhen);////gets index one
 		System.out.println("---- Row 1 index------: " + (indexRow1 + 1)); //prints index one for me to see
 
 		int fitnessRow1 = 0;
-		//int[] row = matrixPhen[1];///puts in index one so that we can get fitness of index one
-		//int row = 1;
-		//for (int value : row) {
-		//	fitnessRow1 = fitnessRow1 + value; // gets/counts fitness of fitness one
-		//}
+		int[] row = matrixPhen[indexRow1];///puts in index one so that we can get fitness of index one
+		for (int value : row) {
+			fitnessRow1 = fitnessRow1 + value; // gets/counts fitness of fitness one
+		}
 		System.out.println("---- Row 1 Fitness--------: " + fitnessRow1 + "\n"); //
 
 
@@ -46,10 +45,14 @@ public class Crossover {
 			if (fitnessRow2 > maxFitness) {
 		//		maxFitness = fitnessRow2;
 			}
+
+			if (fitnessRow2 > maxFitness) {
+				maxFitness = fitnessRow2;
+			}
 			//System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
 			//System.out.println("Highest Fitness: " + maxFitness);
 
-			//System.out.println("---- Row 2 index------: " + (indexRow2 + 1));
+			System.out.println("---- Row 2 index------: " + (indexRow2 + 1));
 			System.out.println("---- Row 2 fitness--------: " + (fitnessRow2));
 
 			if (fitnessRow1 == fitnessRow2) {
@@ -57,7 +60,8 @@ public class Crossover {
 				difference = 0;
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
-					//indexMaxDifference = indexRow2;
+
+					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference + "\n");
 				}
 			}
@@ -66,7 +70,8 @@ public class Crossover {
 				difference = (fitnessRow1 - fitnessRow2);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
-					//indexMaxDifference = indexRow2;
+
+					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference + "\n");
 				}
 			}
@@ -75,23 +80,25 @@ public class Crossover {
 				difference = (fitnessRow2 - fitnessRow1);
 				if (difference > mAXdifference) {
 					mAXdifference = difference;
-					///indexMaxDifference = indexRow2;
+
+					indexMaxDifference = indexRow2;
 					System.out.println("max difference: " + mAXdifference + "\n");
 				}
 			}
 		}//i stops here
-		//System.out.println("\nlast max difference: " + mAXdifference);
-		//System.out.println("\nlast max difference index: " + (indexMaxDifference + 1));
+
+		System.out.println("\nlast max difference: " + mAXdifference);
+		System.out.println("\nlast max difference index: " + (indexMaxDifference + 1));
 		//	From here
 		// Ended Here
 		int fitnessRow2 = 0;
-	//	row = matrixPhen[indexMaxDifference];
-	//	for (int value : row) {
-	//		fitnessRow2 = value + fitnessRow2;
-	//	}
-		//System.out.println("---- Row 2 Fitness--------: " + (fitnessRow2) + "\n");
+		row = matrixPhen[indexMaxDifference];
+		for (int value : row) {
+			fitnessRow2 = value + fitnessRow2;
+		}
+		System.out.println("---- Row 2 Fitness--------: " + (fitnessRow2) + "\n");
 		int[][] matrix = MainMethodCalls.matrix;
-		//crossover(MainMethodCalls.matrix, indexRow1, indexMaxDifference);
+		crossover(MainMethodCalls.matrix, indexRow1, indexMaxDifference);
 	
 		//MainMethodCalls.printMatrix(matrix);
 	}
