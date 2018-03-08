@@ -1,7 +1,7 @@
 package Algorithm;
 
 public class FitnessFunctions {
-
+    
 	/** 1 - Gets fitness of every chromosome in the population **/
 	public static void DisplayEachRowFitness(int[][] matrix) {
 		int maxSum = 0, sum;
@@ -15,18 +15,12 @@ public class FitnessFunctions {
 				maxSum = sum;
 			}
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
-			returnSum(sum);
 		}
 		// System.out.println();
 		System.out.println("Highest Fitness: " + maxSum);
 	}
-	///might need to delete
-	private static int returnSum(int sum) {
-		//System.out.println("sum" + sum);
-		return sum;
-	}
 
-	/** 2 - Gets fitness and index of individual chromosome **/
+	/** 2 - Fitness Function - Gets fitness and index of individual chromosome **/
 	public static int[] getRowFitness(int matrix[][], int rowIndex) {
 		int sum = 0;
 		int[] row = matrix[rowIndex];

@@ -51,4 +51,5 @@ public class RandomNumbers {
 		int mAXFitness = 0, fitness = 0, difference = 0, mAXdifference = 0;
 		int bestFitness = (difference / mAXdifference) + (fitness / mAXFitness);
 	}
+
 }
