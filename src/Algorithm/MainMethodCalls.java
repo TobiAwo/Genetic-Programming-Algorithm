@@ -11,7 +11,7 @@ public class MainMethodCalls {
 	static int[][] matrixPhen;
 	static int[][] matrixPhenNext;
 	static Random rnd = new Random();
-	static int GEN = 2;//100
+	static int GEN = 1;//100
 
 	public static void main(String[] args) {
 
@@ -26,19 +26,12 @@ public class MainMethodCalls {
 		/** 1. EVALUATE FITNESS **/
 		//FitnessFunctions.DisplayEachRowFitness(matrix);
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
-		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
-		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
-		System.out.println();//afterthis
-<<<<<<< HEAD
-		//FitnessFunctions.DisplayEachRowFitness(matrix);
+		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
+		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
+		System.out.println();
 		Crossover.crossoverGuided(matrixPhen);
-=======
-		FitnessFunctions.DisplayEachRowFitness(matrix);
-		Crossover.crossover(matrixPhen, 1, 1);
->>>>>>> 67274c99dbb35493cfba49dd9cb4c278f0353bc0
-		//FitnessFunctions.maxSum();
 		System.exit(0);
-		for (int g = 0; g < GEN; g++) {
+		for (int g = 0; g < 2; g++) {
 			System.out.println("---------------- \t New Generation \t ----------------");
 			/** - EVALUATE FITNESS - **/
 			/** TOURNAMENT SELECTION **/
@@ -50,16 +43,16 @@ public class MainMethodCalls {
 									//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow()))), i);
 
 				/** 2. Phenotype Fitness Function **/
-				//fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
-						//(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow())), 
-									//(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);
+				fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
+						(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow())), 
+									(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);
 
 				/** 2. Phenotype Fitness Function with Roulette Wheel Selection - scrap**/
-				fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
-						(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.rouletteWheelSelection(matrixPhen))), 
-									(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);			
+				//fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
+				//		(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.rouletteWheelSelection(matrixPhen))), 
+				//					(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);			
 			}
-
+			
 			/** MUTATION **/
 			Mutation.mutation(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomColumn());
 			/** CROSSOVER **/
