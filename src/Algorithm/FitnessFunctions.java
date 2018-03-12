@@ -25,9 +25,11 @@ public class FitnessFunctions {
 		int sum = 0;
 		int[] row = matrix[rowIndex];
 		for (int value : row) {
-			sum = sum + value;
+			//sum = sum + value;
+			if (value == 1)		
+				sum++;
 		}
-		// System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);
+		 System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);
 		int ar[] = new int[2];
 		ar[0] = sum;
 		ar[1] = rowIndex;
