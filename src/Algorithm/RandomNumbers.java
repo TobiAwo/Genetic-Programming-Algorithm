@@ -28,7 +28,8 @@ public class RandomNumbers {
 		int addedSum = 0, minimum = 0, maximum;
 		for (int i = 0; i < matrix.length; i++) {
 			for (int k = 0; k < matrix[i].length; k++) {
-				totalSum += matrix[i][k];
+				if (matrix[i][k] == 1)
+					totalSum ++;
 			}
 		}
 		maximum = totalSum;

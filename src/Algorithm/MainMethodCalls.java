@@ -24,13 +24,13 @@ public class MainMethodCalls {
 		printMatrix(matrix);
 		System.out.println();
 		/** 1. EVALUATE FITNESS **/
-		//FitnessFunctions.DisplayEachRowFitness(matrix);
+		FitnessFunctions.DisplayEachRowFitness(matrix);
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
-		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
-		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
-		System.exit(0);
+		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
+		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();
-		Crossover.crossoverGuided(matrixPhen);
+		RandomNumbers.rouletteWheelSelection(matrix);
+		//Crossover.crossoverGuided(matrixPhen);
 		System.exit(0);
 		for (int g = 0; g < 2; g++) {
 			System.out.println("---------------- \t New Generation \t ----------------");
