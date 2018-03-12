@@ -38,7 +38,8 @@ public class RandomNumbers {
 		//System.out.println("random Number: " + randomNum);
 		for (int i = 0; i < matrix.length; i++) {
 			for (int k = 0; k < matrix[i].length; k++) {
-				addedSum += matrix[i][k];
+				if (matrix[i][k] == 1)
+				addedSum ++;
 			}
 			if (addedSum >= randomNum) {
 				//System.out.println("i: " + i);
