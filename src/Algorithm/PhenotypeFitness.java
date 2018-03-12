@@ -33,7 +33,8 @@ public class PhenotypeFitness {
 		for (int i = 0; i < matrixPhen.length; i++) {
 			sum = 0;
 			for (int j = 0; j < matrixPhen[i].length; j++) {
-				sum += matrixPhen[i][j];
+				if (matrixPhen[i][j] == 1)		
+					sum++;
 			}
 			if (sum > maxSum) {
 				maxSum = sum;

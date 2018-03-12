@@ -24,11 +24,11 @@ public class MainMethodCalls {
 		printMatrix(matrix);
 		System.out.println();
 		/** 1. EVALUATE FITNESS **/
-		FitnessFunctions.overallPopulationFitness(matrix);
-		System.exit(0);
+		//FitnessFunctions.DisplayEachRowFitness(matrix);
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
+		System.exit(0);
 		System.out.println();
 		Crossover.crossoverGuided(matrixPhen);
 		System.exit(0);
