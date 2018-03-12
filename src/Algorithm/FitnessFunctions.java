@@ -9,11 +9,11 @@ public class FitnessFunctions {
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
 			for (int j = 0; j < matrix[i].length; j++) {
-				sum += matrix[i][j];
+				if (matrix[i][j] == 1)		
+					sum++;
 			}
-			if (sum > maxSum) {
+			if (sum > maxSum) 
 				maxSum = sum;
-			}
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
 		}
 		// System.out.println();
