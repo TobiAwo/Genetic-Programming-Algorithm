@@ -25,7 +25,6 @@ public class FitnessFunctions {
 		int sum = 0;
 		int[] row = matrix[rowIndex];
 		for (int value : row) {
-			//sum = sum + value;
 			if (value == 1)		
 				sum++;
 		}
@@ -56,10 +55,11 @@ public class FitnessFunctions {
 		int totalSum = 0;
 		for (int i = 0; i <  matrix.length; i++) {
 			for (int k = 0; k < matrix[i].length; k++) {
-				totalSum += matrix[i][k];
+				if (matrix[i][k] == 1)
+					totalSum ++;
 			}
 		}
-	//System.out.println("sum: " + totalSum);
+	System.out.println("sum: " + totalSum);
 	return totalSum;
 	}
 }
