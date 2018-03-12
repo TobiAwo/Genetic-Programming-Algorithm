@@ -17,9 +17,9 @@ public class Crossover {
 
 	public static void crossoverGuided(int[][] matrixPhen) {
 		float maxFitness = 0, mAXdifference = 0, equation = 0, equationBest = 0;
-		int difference = 0,  indexRow1, indexMaxDifference = 0;
+		int difference = 0, indexRow1, indexMaxDifference = 0;
 		int differenceIJ = 0, jindexMaxEquation = 0, fitnessRow1 = 0;
-		
+
 		indexRow1 = RandomNumbers.rouletteWheelSelection(matrixPhen); // gets index one
 		System.out.println("FIRST ROW CHOSEN IS ------: " + (indexRow1 + 1));// prints index one for me to see
 		int[] row = matrixPhen[indexRow1]; // puts in index one so that we can get fitness of index one
@@ -57,8 +57,9 @@ public class Crossover {
 			}
 		}
 		System.out.println("last max difference: " + mAXdifference); // prints out index of max difference
-		System.out.println("last max difference index: " + (indexMaxDifference + 1)); // prints out index of max index creature
-		
+		System.out.println("last max difference index: " + (indexMaxDifference + 1)); // prints out index of max index
+																						// creature
+
 		// `````````````````````` FORMULA ABOVE PART 1 ````````````````````\\
 		System.out.println("\n`FORMULA ABOVE PART 1`\n");
 		for (int jindex = 0; jindex < matrixPhen.length; jindex++) {// new loop through all creatures starting
@@ -88,7 +89,7 @@ public class Crossover {
 			System.out.println("maxFitness: " + maxFitness);
 			System.out.println("equation: " + equation);
 			System.out.println("equationBest: " + equationBest);
-			
+
 			if (equation > equationBest) {
 				equationBest = equation;
 				jindexMaxEquation = jindex;
@@ -104,9 +105,11 @@ public class Crossover {
 		for (int value : row) { // loops till the end of row
 			fitnessRow2 = fitnessRow2 + value; // counting the genes
 		}
-		System.out.println("FITNESS OF FIRST ROW CHOSEN IS: " + (fitnessRow2) + "\n"); // prints fitness of chosen creature
+		System.out.println("FITNESS OF FIRST ROW CHOSEN IS: " + (fitnessRow2) + "\n"); // prints fitness of chosen
+																						// creature
 		int[][] matrix = MainMethodCalls.matrix; // gets matrix
-		crossover(MainMethodCalls.matrix, indexRow1, jindexMaxEquation); // calls crossover method to cross both creatures
+		crossover(MainMethodCalls.matrix, indexRow1, jindexMaxEquation); // calls crossover method to cross both
+																			// creatures
 		MainMethodCalls.printMatrix(matrix); // prints new matrix
 	}
 }
