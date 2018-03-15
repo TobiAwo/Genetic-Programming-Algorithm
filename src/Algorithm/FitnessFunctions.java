@@ -21,31 +21,6 @@ public class FitnessFunctions {
 		System.out.println("Highest Fitness: " + maxSum);
 	}
 
-	public static void DisplayEachDeceptiveRowFitness(int[][] matrix) {
-		int maxSum = 0, sum;
-		boolean isSame = true;
-		int[][] tempMatrix = new int[][] { { 0 } };
-		int marker = tempMatrix[0][0];
-
-		System.out.println("Creatures Fitness");
-		for (int i = 0; i < matrix.length; i++) {
-			sum = 0;
-			isSame = true;
-			for (int j = 0; j < matrix[i].length; j++) {
-				if (matrix[i][j] != marker)
-					isSame = false;
-				if (matrix[i][j] == 1)
-					sum++;
-			}
-			if (isSame)
-				sum = 20;
-			if (sum > maxSum)
-				maxSum = sum;
-			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
-		}
-		System.out.println("Highest Fitness: " + maxSum);
-	}
-
 	/** 2 - Fitness Function - Gets fitness and index of individual chromosome **/
 	public static int[] getRowFitness(int matrix[][], int rowIndex) {
 		int sum = 0;
@@ -62,13 +37,43 @@ public class FitnessFunctions {
 		return ar;
 	}
 
+	/** 1 - Deceptive - Gets fitness of every chromosome in the population **/
+	public static void DisplayEachDeceptiveRowFitness(int[][] matrix) {
+		int maxSum = 0, sum;
+		boolean isSame = true; //added
+		System.out.println("Creatures Fitness");
+		for (int i = 0; i < matrix.length; i++) {
+			sum = 0;
+			isSame = true; //added
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (matrix[i][j] == 1) {
+					sum++;
+					isSame = false; //added
+				}
+			}
+			if (isSame)   //added
+				sum = 20; //added
+			if (sum > maxSum)
+				maxSum = sum;
+			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
+		}
+		System.out.println("Highest Fitness: " + maxSum);
+	}
+
+	/** 2-Deceptive-Fitness Function-Gets fitness + index of individual chromosome**/
 	public static int[] getDeceptiveRowFitness(int matrix[][], int rowIndex) {
 		int sum = 0;
+		boolean isSame = true; //added
+
 		int[] row = matrix[rowIndex];
 		for (int value : row) {
-			if (value == 1)
+			if (value == 1) {
 				sum++;
+				isSame = false; //added
+			}
 		}
+		if (isSame) //added
+			sum = 20; //added
 		System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);
 		int ar[] = new int[2];
 		ar[0] = sum;

@@ -32,6 +32,13 @@ public class MainMethodCalls {
 		System.out.println();
 		//FitnessFunctions.fyp();
 		FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix);
+		FitnessFunctions.getDeceptiveRowFitness(matrix, 0);
+		FitnessFunctions.getDeceptiveRowFitness(matrix, 1);
+		FitnessFunctions.getDeceptiveRowFitness(matrix, 2);
+		FitnessFunctions.getDeceptiveRowFitness(matrix, 3);
+		FitnessFunctions.getDeceptiveRowFitness(matrix, 4);
+		FitnessFunctions.getDeceptiveRowFitness(matrix, 5);
+
 		//Crossover.crossoverGuided(matrixPhen);
 		System.exit(0);
 		for (int g = 0; g < 2; g++) {
