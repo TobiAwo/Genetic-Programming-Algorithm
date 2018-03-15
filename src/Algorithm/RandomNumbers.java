@@ -24,8 +24,7 @@ public class RandomNumbers {
 	}
 
 	public static int rouletteWheelSelection(int[][] matrix) {
-		int totalSum = 0;
-		int addedSum = 0, minimum = 0, maximum;
+		int totalSum = 0, addedSum = 0, minimum = 0, maximum;
 		for (int i = 0; i < matrix.length; i++) {
 			for (int k = 0; k < matrix[i].length; k++) {
 				if (matrix[i][k] == 1)
@@ -48,10 +47,4 @@ public class RandomNumbers {
 		}
 		return -1;
 	}
-
-	public static void FitnessBasedonFitness(int[][] tempMatrix) {
-		int mAXFitness = 0, fitness = 0, difference = 0, mAXdifference = 0;
-		int bestFitness = (difference / mAXdifference) + (fitness / mAXFitness);
-	}
-
 }

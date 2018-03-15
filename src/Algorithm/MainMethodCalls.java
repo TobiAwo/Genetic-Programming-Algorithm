@@ -5,7 +5,7 @@ import java.util.Random;
 public class MainMethodCalls {
 
 	public static int rows = 6;//100
-	public static int columns = 6;//20
+	public static int columns = 3;//20
 	static int[][] matrix = new int[rows][columns];
 	static int[][] matrixNext = new int[rows][columns];
 	static int[][] matrixPhen;
@@ -15,7 +15,8 @@ public class MainMethodCalls {
 
 	public static void main(String[] args) {
 
-		System.out.println("Number of Rows: " + rows);
+		String s1 = "Number of Rows: " + rows;
+		System.out.println(s1);
 		System.out.println("Number of Columns: " + columns + "\n");
 
 		/** INITALIZE FIRST POPULATION **/
@@ -24,12 +25,13 @@ public class MainMethodCalls {
 		printMatrix(matrix);
 		System.out.println();
 		/** 1. EVALUATE FITNESS **/
-		FitnessFunctions.DisplayEachRowFitness(matrix);
+		//FitnessFunctions.DisplayEachRowFitness(matrix);
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();
-		RandomNumbers.rouletteWheelSelection(matrix);
+		//FitnessFunctions.fyp();
+		FitnessFunctions.DisplayEachRowFitnesswithDeception(matrix);
 		//Crossover.crossoverGuided(matrixPhen);
 		System.exit(0);
 		for (int g = 0; g < 2; g++) {

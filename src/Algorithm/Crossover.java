@@ -20,7 +20,8 @@ public class Crossover {
 		int difference = 0, indexRow1, indexMaxDifference = 0;
 		int differenceIJ = 0, jindexMaxEquation = 0, fitnessRow1 = 0;
 
-		indexRow1 = RandomNumbers.rouletteWheelSelection(matrixPhen); // gets index one
+		indexRow1 = RandomNumbers.rouletteWheelSelection(matrixPhen); // gets index one from RWS
+		//indexRow1 =
 		System.out.println("FIRST ROW CHOSEN IS ------: " + (indexRow1 + 1));// prints index one for me to see
 		int[] row = matrixPhen[indexRow1]; // puts in index one so that we can get fitness of index one
 		for (int value : row) {
