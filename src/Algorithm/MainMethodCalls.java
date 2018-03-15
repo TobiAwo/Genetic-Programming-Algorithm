@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class MainMethodCalls {
 
-	public static int rows = 6;//100
-	public static int columns = 3;//20
+	public static int rows = 30;//100
+	public static int columns = 10;//20
 	static int[][] matrix = new int[rows][columns];
 	static int[][] matrixNext = new int[rows][columns];
 	static int[][] matrixPhen;
 	static int[][] matrixPhenNext;
 	static Random rnd = new Random();
-	static int GEN = 1;//100
+	static int GEN = 10;//100
 
 	public static void main(String[] args) {
 
@@ -24,71 +24,85 @@ public class MainMethodCalls {
 		printMatrix(matrix);
 		System.out.println();
 		/** 1. EVALUATE FITNESS **/
-		//FitnessFunctions.DisplayEachRowFitness(matrix);
-		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix);
+		//FitnessFunctions.DisplayEachRowFitness(matrix); //non deceptive
+		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix); //deceptive
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
-		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
-		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
+		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
+		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();
-		//FitnessFunctions.fyp();
-		FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix);
-		FitnessFunctions.getDeceptiveRowFitness(matrix, 0);
-		FitnessFunctions.getDeceptiveRowFitness(matrix, 1);
-		FitnessFunctions.getDeceptiveRowFitness(matrix, 2);
-		FitnessFunctions.getDeceptiveRowFitness(matrix, 3);
-		FitnessFunctions.getDeceptiveRowFitness(matrix, 4);
-		FitnessFunctions.getDeceptiveRowFitness(matrix, 5);
-
 		//Crossover.crossoverGuided(matrixPhen);
-		System.exit(0);
-		for (int g = 0; g < 2; g++) {
+		//System.exit(0);
+		
+		for (int g = 0; g < GEN; g++) {
 			System.out.println("---------------- \t New Generation \t ----------------");
 			/** - EVALUATE FITNESS - **/
 			/** TOURNAMENT SELECTION **/
 			for (int i = 0; i < rows; i++) {
 				
-				/** 1. Entire Row Fitness Function with non-deceptive landscape **/
+				/** 1.1 Entire Row Fitness Function with non-deceptive landscape **/
 				//fillMatrixNext(matrix, matrixNext, FitnessFunctions.evaluateRowsFitness(matrix,
 						//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow())), 
 									//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow()))), i);
 				
-				/** 1. Entire Row Fitness Function with deceptive landscape **/
+				/** 1.2 Entire Row Fitness Function with deceptive landscape **/
 				//fillMatrixNext(matrix, matrixNext, FitnessFunctions.evaluateRowsFitness(matrix,
-						//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow())), 
-									//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow()))), i);
+						//(FitnessFunctions.getDeceptiveRowFitness(matrix, RandomNumbers.getRandomRow())), 
+									//(FitnessFunctions.getDeceptiveRowFitness(matrix, RandomNumbers.getRandomRow()))), i);
 
-				/** 2. Phenotype Fitness Function **/
-				fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
-						(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow())), 
-									(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);
+				/** 2.1 Phenotype Fitness Function **/
+/*				fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
+						(PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow())), 
+									(PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);
+*/				
+			//Phenotype Fitness Function
+			int[] OutputPhenFitness1 = PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
+			int[] OutputPhenFitness2 = PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
+			int OutputEvaluatePhenFitness = PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,(OutputPhenFitness1),(OutputPhenFitness2));
+			fillMatrixNext(matrix, matrixNext, OutputEvaluatePhenFitness, i);
 
-				/** 2. Phenotype Fitness Function with Roulette Wheel Selection - scrap**/
-				//fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
-				//		(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.rouletteWheelSelection(matrixPhen))), 
-				//					(PhenotypeFitness.countRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);			
-			}
+			/** GUIDED CROSSOVER **/
+			Crossover.crossoverGuided(matrixPhen, OutputEvaluatePhenFitness);
+
 			
+				/** 2.2 Phenotype Row Fitness Function with deceptive landscape **/
+				//fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
+						//(PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow())), 
+									//(PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);
+				
+				/** 2.3 Phenotype Fitness Function with Roulette Wheel Selection TODO**/
+				//fillMatrixNext(matrix, matrixNext, PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,
+				//		(PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.rouletteWheelSelection(matrixPhen))), 
+				//					(PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);			
+			}
+			/** UPDATE PHENOTYPE POPULATION **/
+			PhenotypeFitness.SeperateTOPhenotype(matrixNext);//Phenotype
+
 			/** MUTATION **/
 			Mutation.mutation(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomColumn());
+			
 			/** CROSSOVER **/
-			//Crossover.crossover(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomRow());
+			Crossover.crossover(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomRow());
+			
 			/** GUIDED CROSSOVER **/
-			Crossover.crossoverGuided(matrixPhen);
+			//PhenotypeFitness.SeperateTOPhenotype(matrixNext);//Phenotype
+			//Crossover.crossover(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomRow());
+			//Crossover.crossoverGuided(matrixPhen);
+			
 			/** UPDATE POPULATION **/
 			updatePopulation();
+			
 		}
 		
 		System.out.println("--------------- \t Final Generation \t ----------------\n");
 		printMatrix(matrix);
 		System.out.println();
 		//FitnessFunctions.DisplayEachRowFitness(matrix);
-		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
-		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
+		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
+		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 
 	}
 
 	public static void fillMatrix(int[][] matrix) {
-
 		for (int row = 0; row < rows; row++) {
 			for (int col = 0; col < columns; col++) {
 				matrix[row][col] = RandomNumbers.getRandomFitness();
