@@ -15,8 +15,7 @@ public class MainMethodCalls {
 
 	public static void main(String[] args) {
 
-		String s1 = "Number of Rows: " + rows;
-		System.out.println(s1);
+		System.out.println("Number of Rows: " + rows);
 		System.out.println("Number of Columns: " + columns + "\n");
 
 		/** INITALIZE FIRST POPULATION **/
@@ -26,12 +25,13 @@ public class MainMethodCalls {
 		System.out.println();
 		/** 1. EVALUATE FITNESS **/
 		//FitnessFunctions.DisplayEachRowFitness(matrix);
+		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix);
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();
 		//FitnessFunctions.fyp();
-		FitnessFunctions.DisplayEachRowFitnesswithDeception(matrix);
+		FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix);
 		//Crossover.crossoverGuided(matrixPhen);
 		System.exit(0);
 		for (int g = 0; g < 2; g++) {
@@ -40,7 +40,12 @@ public class MainMethodCalls {
 			/** TOURNAMENT SELECTION **/
 			for (int i = 0; i < rows; i++) {
 				
-				/** 1. Entire Row Fitness Function **/
+				/** 1. Entire Row Fitness Function with non-deceptive landscape **/
+				//fillMatrixNext(matrix, matrixNext, FitnessFunctions.evaluateRowsFitness(matrix,
+						//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow())), 
+									//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow()))), i);
+				
+				/** 1. Entire Row Fitness Function with deceptive landscape **/
 				//fillMatrixNext(matrix, matrixNext, FitnessFunctions.evaluateRowsFitness(matrix,
 						//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow())), 
 									//(FitnessFunctions.getRowFitness(matrix, RandomNumbers.getRandomRow()))), i);

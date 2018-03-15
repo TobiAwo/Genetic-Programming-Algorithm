@@ -21,25 +21,6 @@ public class FitnessFunctions {
 		System.out.println("Highest Fitness: " + maxSum);
 	}
 
-	public static void fyp() {
-		boolean flag = true;
-		int[] matrix = new int[] { 0, 0, 0, 0, 0, 0 };
-		// int[] matrix = new int[]{1,1,1,1,1,1};
-		int[] tempMatrix = new int[] { 0 };
-		int first = tempMatrix[0];
-		for (int i = 1; i < 6 && flag; i++) {
-			if (matrix[i] != first)
-				flag = false;
-			System.out.println(flag);
-			System.out.println(matrix[i]);
-
-		}
-		if (flag)
-			System.out.println("ok");
-		if (!flag)
-			System.out.println("not ok");
-	}
-
 	public static void DisplayEachDeceptiveRowFitness(int[][] matrix) {
 		int maxSum = 0, sum;
 		boolean isSame = true;
@@ -48,19 +29,16 @@ public class FitnessFunctions {
 
 		System.out.println("Creatures Fitness");
 		for (int i = 0; i < matrix.length; i++) {
-			sum = 0; isSame = true;
+			sum = 0;
+			isSame = true;
 			for (int j = 0; j < matrix[i].length; j++) {
 				if (matrix[i][j] != marker)
 					isSame = false;
-				if (matrix[i][j] == 1) 
+				if (matrix[i][j] == 1)
 					sum++;
 			}
-			if (isSame) {
-				sum  = 20;	
-				System.out.println("ok");
-			}
-			if (!isSame)
-				System.out.println("not ok");
+			if (isSame)
+				sum = 20;
 			if (sum > maxSum)
 				maxSum = sum;
 			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
@@ -83,7 +61,7 @@ public class FitnessFunctions {
 
 		return ar;
 	}
-	
+
 	public static int[] getDeceptiveRowFitness(int matrix[][], int rowIndex) {
 		int sum = 0;
 		int[] row = matrix[rowIndex];
