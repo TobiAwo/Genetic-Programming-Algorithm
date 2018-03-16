@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class MainMethodCalls {
 
-	public static int rows = 30;//100
-	public static int columns = 10;//20
+	public static int rows = 7;//100
+	public static int columns = 6;//20
 	static int[][] matrix = new int[rows][columns];
 	static int[][] matrixNext = new int[rows][columns];
 	static int[][] matrixPhen;
 	static int[][] matrixPhenNext;
 	static Random rnd = new Random();
-	static int GEN = 10;//100
+	static int GEN = 2;//100
 
 	public static void main(String[] args) {
 
@@ -24,14 +24,14 @@ public class MainMethodCalls {
 		printMatrix(matrix);
 		System.out.println();
 		/** 1. EVALUATE FITNESS **/
-		//FitnessFunctions.DisplayEachRowFitness(matrix); //non deceptive
+		FitnessFunctions.DisplayEachRowFitness(matrix); //non deceptive
 		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix); //deceptive
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
-		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
-		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
+		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
+		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype
 		System.out.println();
 		//Crossover.crossoverGuided(matrixPhen);
-		//System.exit(0);
+		System.exit(0);
 		
 		for (int g = 0; g < GEN; g++) {
 			System.out.println("---------------- \t New Generation \t ----------------");

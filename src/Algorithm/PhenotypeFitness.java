@@ -27,6 +27,7 @@ public class PhenotypeFitness {
 		MainMethodCalls.printMatrix(matrixPhen);//outputin
 	}
 	
+	/** 1 - NON-Deceptive - Gets fitness of every phenotype chromosome in the population **/
 	public static void evaluatePhenFitness(int[][] matrixPhen) {
 		int maxSum = 0, sum;
 		//System.out.println("\nCreatures Phenotype Fitness");//output
@@ -44,8 +45,13 @@ public class PhenotypeFitness {
 		//System.out.println("Highest Phenotype Fitness: " + maxSum);//output
 	}
 	
+	/** 2 - NON-Deceptive - Phenotype Fitness Function - Gets fitness and index of individual chromosome **/
+	public static int[] getRowsFitnessPhenotype(int matrixPhen[][], int rowIndex) {
+		return FitnessFunctions.getRowFitness(matrixPhen, rowIndex);
+	}
+	
 	/** 1 - Deceptive - Gets fitness of every phenotype chromosome in the population **/
-	public static void evaluateDeceptivePhenFitness(int[][] matrixPhen) {
+	public static int evaluateDeceptivePhenFitness(int[][] matrixPhen) {
 		int maxSum = 0, sum;
 		boolean isSame = true; //added
 		System.out.println("\nCreatures Phenotype Fitness");
@@ -63,15 +69,13 @@ public class PhenotypeFitness {
 			if (sum > maxSum) {
 				maxSum = sum;
 			}
-			System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum);
+			//System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); //out
 		}
-		System.out.println("Highest Phenotype Fitness: " + maxSum);
+		//System.out.println("Highest Phenotype Fitness: " + maxSum); //out
+		return maxSum;
 	}
 	
-	public static int[] getRowsFitnessPhenotype(int matrixPhen[][], int rowIndex) {
-		return FitnessFunctions.getRowFitness(matrixPhen, rowIndex);
-	}
-	
+	/** 2 - Deceptive - Phenotype Fitness Function - Gets fitness and index of individual chromosome **/
 	public static int[] getDeceptiveRowFitnessPhenotype(int matrixPhen[][], int rowIndex) {
 		return FitnessFunctions.getDeceptiveRowFitness(matrixPhen, rowIndex);
 	}
