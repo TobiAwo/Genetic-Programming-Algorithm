@@ -24,8 +24,8 @@ public class MainMethodCalls {
 		printMatrix(matrix);
 		System.out.println();
 		/** 1. EVALUATE FITNESS **/
-		FitnessFunctions.DisplayEachRowFitness(matrix); //non deceptive
-		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix); //deceptive
+		//FitnessFunctions.DisplayEachRowFitness(matrix); //non deceptive
+		FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix); //deceptive
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype

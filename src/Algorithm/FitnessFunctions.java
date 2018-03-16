@@ -4,8 +4,8 @@ public class FitnessFunctions {
 
 	/** 1 - Gets fitness of every chromosome in the population **/
 	public static int DisplayEachRowFitness(int[][] matrix) {
-		int maxSum = 0, sum, choseI = 0, chosenIndex = 0;
-		System.out.println("Creatures Fitness");
+		int maxSum = 0, sum, chosenIn = 0;
+		//System.out.println("Creatures Fitness");//out
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
 			for (int j = 0; j < matrix[i].length; j++) {
@@ -14,14 +14,14 @@ public class FitnessFunctions {
 			}
 			if (sum > maxSum) {
 				maxSum = sum;
-				chosenIndex = choseI; //new
+				chosenIn = i; //new
 			}
-			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);//out
+			//System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);//out
 		}
-		System.out.println("Highest Fitness: " + maxSum);//out
-		System.out.println("Highest Fitness: " + chosenIndex);//out //new
+		//System.out.println("Highest Fitness: " + maxSum);//out
+		//System.out.println("Chosen index: " + chosenIn);//out //new
 
-		return chosenIndex;
+		return chosenIn;
 	}
 
 	/** 2 - Fitness Function - Gets fitness and index of individual chromosome **/
@@ -41,10 +41,10 @@ public class FitnessFunctions {
 	}
 
 	/** 1 - Deceptive - Gets fitness of every chromosome in the population **/
-	public static void DisplayEachDeceptiveRowFitness(int[][] matrix) {
-		int maxSum = 0, sum;
+	public static int DisplayEachDeceptiveRowFitness(int[][] matrix) {
+		int maxSum = 0, sum, chosenIn = 0;
 		boolean isSame = true; //added
-		System.out.println("Creatures Fitness");
+		//System.out.println("Creatures Fitness"); //out
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
 			isSame = true; //added
@@ -56,11 +56,16 @@ public class FitnessFunctions {
 			}
 			if (isSame)   //added
 				sum = 20; //added
-			if (sum > maxSum)
+			if (sum > maxSum) {
 				maxSum = sum;
-			System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);
+				chosenIn = i; //new
+			}
+			//System.out.println("Fitness of Creature " + (i + 1) + ": " + sum); //out
 		}
-		System.out.println("Highest Fitness: " + maxSum);
+		//System.out.println("Highest Fitness: " + maxSum); //out
+		//System.out.println("Chosen index: " + chosenIn);//out //new
+		
+		return chosenIn; //new
 	}
 
 	/** 2-Deceptive-Fitness Function-Gets fitness + index of individual chromosome**/
