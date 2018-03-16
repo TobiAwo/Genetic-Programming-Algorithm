@@ -32,7 +32,7 @@ public class MainMethodCalls {
 		//PhenotypeFitness.evaluateDeceptivePhenFitness(matrixPhen);//Phenotype //deceptive
 		
 		for (int g = 0; g < GEN; g++) {
-			System.out.println("---------------- \t New Generation \t ----------------");
+			System.out.println("---------------- \t New Generation ("+g+1 +") \t ----------------");
 			/** - EVALUATE FITNESS - **/
 			/** TOURNAMENT SELECTION **/
 			for (int i = 0; i < rows; i++) {
