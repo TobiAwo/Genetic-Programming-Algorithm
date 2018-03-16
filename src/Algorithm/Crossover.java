@@ -16,6 +16,7 @@ public class Crossover {
 	}
 
 	public static void crossoverGuided(int[][] matrixPhen, int indexRow1) {
+		//rename matrixphen to matrix
 		float maxFitness = 0, mAXdifference = 0, equation = 0, equationBest = 0;
 		int difference = 0, indexMaxDifference = 0;
 		int differenceIJ = 0, jindexMaxEquation = 0, fitnessRow1 = 0;

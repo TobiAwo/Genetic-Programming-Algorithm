@@ -23,14 +23,14 @@ public class PhenotypeFitness {
 			}
 		}
 		MainMethodCalls.matrixPhen = matrixPhen;
-		System.out.println("\nPhenotype population");//outputin
-		MainMethodCalls.printMatrix(matrixPhen);//outputin
+	//	System.out.println("\nPhenotype population");//outputin //shows atleast 50
+	//	MainMethodCalls.printMatrix(matrixPhen);//outputin //shows atleast 50
 	}
 	
 	/** 1 - NON-Deceptive - Gets fitness of every phenotype chromosome in the population **/
-	public static void evaluatePhenFitness(int[][] matrixPhen) {
-		int maxSum = 0, sum;
-		//System.out.println("\nCreatures Phenotype Fitness");//output
+	public static int evaluatePhenFitness(int[][] matrixPhen) {
+		int maxSum = 0, sum, chosenIn = 0;
+		System.out.println("\nCreatures Phenotype Fitness");//output
 		for (int i = 0; i < matrixPhen.length; i++) {
 			sum = 0;
 			for (int j = 0; j < matrixPhen[i].length; j++) {
@@ -39,10 +39,14 @@ public class PhenotypeFitness {
 			}
 			if (sum > maxSum) {
 				maxSum = sum;
+				chosenIn = i; //new
 			}
 			//System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum);//output
 		}
 		//System.out.println("Highest Phenotype Fitness: " + maxSum);//output
+		//System.out.println("Chosen index: " + chosenIn);//out //new
+		return chosenIn; //new
+
 	}
 	
 	/** 2 - NON-Deceptive - Phenotype Fitness Function - Gets fitness and index of individual chromosome **/
@@ -52,7 +56,7 @@ public class PhenotypeFitness {
 	
 	/** 1 - Deceptive - Gets fitness of every phenotype chromosome in the population **/
 	public static int evaluateDeceptivePhenFitness(int[][] matrixPhen) {
-		int maxSum = 0, sum;
+		int maxSum = 0, sum,  chosenIn = 0;
 		boolean isSame = true; //added
 		System.out.println("\nCreatures Phenotype Fitness");
 		for (int i = 0; i < matrixPhen.length; i++) {
@@ -68,11 +72,14 @@ public class PhenotypeFitness {
 				sum = 20; //added
 			if (sum > maxSum) {
 				maxSum = sum;
+				chosenIn = i; //new
 			}
 			//System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); //out
 		}
 		//System.out.println("Highest Phenotype Fitness: " + maxSum); //out
-		return maxSum;
+		//System.out.println("Chosen index: " + chosenIn);//out //new
+		return chosenIn; //new
+		
 	}
 	
 	/** 2 - Deceptive - Phenotype Fitness Function - Gets fitness and index of individual chromosome **/
