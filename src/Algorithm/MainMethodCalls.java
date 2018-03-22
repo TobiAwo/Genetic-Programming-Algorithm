@@ -4,14 +4,14 @@ import java.util.Random;
 
 public class MainMethodCalls {
 
-	public static int rows = 10;//100
-	public static int columns = 30;//20
+	public static int rows = 6;//100
+	public static int columns = 12;//20
 	static int[][] matrix = new int[rows][columns];
 	static int[][] matrixNext = new int[rows][columns];
 	static int[][] matrixPhen;
 	static int[][] matrixPhenNext;
 	static Random rnd = new Random();
-	static int GEN = 10;//100
+	static int GEN = 5;//100
 
 	public static void main(String[] args) {
 
@@ -29,10 +29,12 @@ public class MainMethodCalls {
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype //non deceptive
+		System.exit(0);
+		
 		//PhenotypeFitness.evaluateDeceptivePhenFitness(matrixPhen);//Phenotype //deceptive
 		
 		for (int g = 0; g < GEN; g++) {
-			System.out.println("---------------- \t New Generation ("+g+1 +") \t ----------------");
+			System.out.println("---------------- \t New Generation ("+(g+1)+") \t ----------------");
 			/** - EVALUATE FITNESS - **/
 			/** TOURNAMENT SELECTION **/
 			for (int i = 0; i < rows; i++) {
@@ -62,14 +64,14 @@ public class MainMethodCalls {
 				//		(PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.rouletteWheelSelection(matrixPhen))), 
 				//					(PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow()))), i);	
 				
-				//Phenotype Fitness Function
+/*				//Phenotype Fitness Function
 				int[] OutputPhenFitness1 = PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
 				int[] OutputPhenFitness2 = PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, RandomNumbers.getRandomRow());
-				int OutputEvaluatePhenFitness = PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,(OutputPhenFitness1),(OutputPhenFitness2));
-				fillMatrixNext(matrix, matrixNext, OutputEvaluatePhenFitness, i);
+				int OutputEvaluatePhenFitness = PhenotypeFitness.evaluatePhenRowsFitness(matrixPhen,(OutputPhenFitness1),(OutputPhenFitness2));*/
+			//	fillMatrixNext(matrix, matrixNext, OutputEvaluatePhenFitness, i);
 
 				/** GUIDED CROSSOVER **/
-				Crossover.crossoverGuided(matrixPhen, OutputEvaluatePhenFitness);
+				//Crossover.crossoverGuided(matrixPhen, OutputEvaluatePhenFitness);
 			
 			}
 			/** UPDATE PHENOTYPE POPULATION **/
