@@ -5,7 +5,7 @@ import java.util.Random;
 public class MainMethodCalls {
 
 	public static int rows = 6;//100
-	public static int columns = 12;//20
+	public static int columns = 6;//20
 	static int[][] matrix = new int[rows][columns];
 	static int[][] matrixNext = new int[rows][columns];
 	static int[][] matrixPhen;
@@ -28,7 +28,11 @@ public class MainMethodCalls {
 		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix); //deceptive
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
-		PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype //non deceptive
+		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype //non deceptive
+		//PhenotypeFitness.evaluatePhenFitness(matrix);//Phenotype //non deceptive
+		PhenotypeFitness.evaluateDeceptivePhenFitness(matrix);//Phenotype // deceptive
+
+
 		System.exit(0);
 		
 		//PhenotypeFitness.evaluateDeceptivePhenFitness(matrixPhen);//Phenotype //deceptive

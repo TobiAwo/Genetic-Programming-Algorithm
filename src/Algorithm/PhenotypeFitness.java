@@ -9,28 +9,25 @@ public class PhenotypeFitness {
 	}
 
 	public static void SeperateTOPhenotype(int[][] matrixCopy) {
-		// 1,1,1,1,1,1 k=4, col=0 //0,1,1,1,1,0 x,1,x,0,k
-		// int k = 3, xt = 0;
-		int xt = 0;
-		// int k = getK();
-		int k = 3;
+		int xt = 0, k = 3; // int k = getK();
 		int[][] matrixPhen = new int[MainMethodCalls.rows][k];
 
-		for (int i = 0; i < ((matrixCopy.length/k)-1); i+=k) {
-			for (int j = 0; j < matrixCopy[i].length; j+=k) {
+		for (int i = 0; i < ((matrixCopy.length / k) - 1); i += k) {
+			for (int j = 0; j < matrixCopy[i].length; j += k) {
 
 				for (int row = 0; row < MainMethodCalls.rows; row++) {
 					for (int col = 0; col < (k); col++) {
 						for (int x = 0; x < MainMethodCalls.rows; x++) {
 
 							System.arraycopy(matrixCopy[x], xt, matrixPhen[x], 0, k);
+
 						}
 					}
 				}
-				MainMethodCalls.matrixPhen = matrixPhen;
-				System.out.println("\nPhenotype population");// outputin //shows atleast 50
-				MainMethodCalls.printMatrix(matrixPhen);// outputin //shows atleast 50
-			    xt += k;
+				// MainMethodCalls.matrixPhen = matrixPhen; //not needed anymore
+				// System.out.println("\nPhenotype population");// outputin //shows atleast 50
+				// MainMethodCalls.printMatrix(matrixPhen);// outputin //shows atleast 50
+				xt += k;
 			}
 		}
 	}
@@ -52,10 +49,10 @@ public class PhenotypeFitness {
 				maxSum = sum;
 				chosenIn = i; // new
 			}
-			// System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum);//output
+			System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum);// output
 		}
-		// System.out.println("Highest Phenotype Fitness: " + maxSum);//output
-		// System.out.println("Chosen index: " + chosenIn);//out //new
+		System.out.println("Highest Phenotype Fitness: " + maxSum);// output
+		System.out.println("Chosen index: " + chosenIn);// out //new
 		return chosenIn; // new
 
 	}
@@ -71,30 +68,50 @@ public class PhenotypeFitness {
 	/**
 	 * 1 - Deceptive - Gets fitness of every phenotype chromosome in the population
 	 **/
-	public static int evaluateDeceptivePhenFitness(int[][] matrixPhen) {
+	public static int evaluateDeceptivePhenFitness(int[][] matrix) {
 		int maxSum = 0, sum, chosenIn = 0;
-		boolean isSame = true; // added
+		int count = 0;
+		int dsum = 0;
+		boolean isAllZero = true; // added
 		System.out.println("\nCreatures Phenotype Fitness");
-		for (int i = 0; i < matrixPhen.length; i++) {
+
+		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
-			isSame = true; // added
-			for (int j = 0; j < matrixPhen[i].length; j++) {
-				if (matrixPhen[i][j] == 1) {
-					sum++;
-					isSame = false; // added
+			isAllZero = true; // added
+
+			for (int j = 0; j < matrix[i].length; j++) {
+				if (j % 3 == 0) {
+					 count = 0;
 				}
+				if (matrix[i][j] == 1) {
+					sum++;
+					isAllZero = false; // added
+					
+				} else
+					count++;		 
+					//System.out.println("c " + ": " + count); // out
+				if (count == 3) { 
+						 // dsum = 20; 
+						 //sum += dsum; 
+						 sum += 20; 
+						 //count = 0; 
+				 }
+
 			}
-			if (isSame) // added
-				sum = 20; // added
-			if (sum > maxSum) {
-				maxSum = sum;
-				chosenIn = i; // new
-			}
-			// System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); //out
+		 //System.out.println("count " + ": " + count); // out
+		 
+
+		 
+		// if (isAllZero) // added
+		// sum = 20; // added
+		if (sum > maxSum) {
+			maxSum = sum;
+			chosenIn = i; // new
 		}
-		// System.out.println("Highest Phenotype Fitness: " + maxSum); //out
-		// System.out.println("Chosen index: " + chosenIn);//out //new
-		return chosenIn; // new
+		System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); // out
+	}System.out.println("Highest Phenotype Fitness: "+maxSum); // out
+	System.out.println("Chosen index: "+chosenIn);// out //new
+	return chosenIn; // new
 
 	}
 
