@@ -5,7 +5,7 @@ import java.util.Random;
 public class MainMethodCalls {
 
 	public static int rows = 6;//100
-	public static int columns = 6;//20
+	public static int columns = 15;//20
 	static int[][] matrix = new int[rows][columns];
 	static int[][] matrixNext = new int[rows][columns];
 	static int[][] matrixPhen;

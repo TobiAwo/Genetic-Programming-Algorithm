@@ -81,37 +81,27 @@ public class PhenotypeFitness {
 
 			for (int j = 0; j < matrix[i].length; j++) {
 				if (j % 3 == 0) {
-					 count = 0;
+					count = 0;
 				}
 				if (matrix[i][j] == 1) {
 					sum++;
 					isAllZero = false; // added
-					
+
 				} else
-					count++;		 
-					//System.out.println("c " + ": " + count); // out
-				if (count == 3) { 
-						 // dsum = 20; 
-						 //sum += dsum; 
-						 sum += 20; 
-						 //count = 0; 
-				 }
-
+					count++;
+				if (count == 3) {
+					sum += 20;
+				}
 			}
-		 //System.out.println("count " + ": " + count); // out
-		 
-
-		 
-		// if (isAllZero) // added
-		// sum = 20; // added
-		if (sum > maxSum) {
-			maxSum = sum;
-			chosenIn = i; // new
+			if (sum > maxSum) {
+				maxSum = sum;
+				chosenIn = i; // new
+			}
+			System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); // out
 		}
-		System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); // out
-	}System.out.println("Highest Phenotype Fitness: "+maxSum); // out
-	System.out.println("Chosen index: "+chosenIn);// out //new
-	return chosenIn; // new
+		System.out.println("Highest Phenotype Fitness: " + maxSum); // out
+		System.out.println("Chosen index: " + chosenIn+1);// out //new
+		return chosenIn; // new
 
 	}
 
@@ -120,7 +110,28 @@ public class PhenotypeFitness {
 	 * individual chromosome
 	 **/
 	public static int[] getDeceptiveRowFitnessPhenotype(int matrixPhen[][], int rowIndex) {
-		return FitnessFunctions.getDeceptiveRowFitness(matrixPhen, rowIndex);
+
+		int sum = 0;
+		boolean isSame = true; //added
+
+		int[] row = matrixPhen[rowIndex];
+		for (int value : row) {
+			if (value == 1) {
+				sum++;
+				isSame = false; //added
+			}
+		}
+		if (isSame) //added
+			sum = 20; //added
+	
+		//System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);//output
+		
+		int ar[] = new int[2];
+		ar[0] = sum;
+		ar[1] = rowIndex;
+
+		return ar;
+	
 	}
 
 	public static int evaluatePhenRowsFitness(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {
