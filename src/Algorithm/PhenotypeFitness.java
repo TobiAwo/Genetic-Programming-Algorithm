@@ -1,6 +1,8 @@
 package Algorithm;
 //import src.Algorithm.Scanner;
 
+import java.awt.Insets;
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class PhenotypeFitness {
@@ -11,7 +13,7 @@ public class PhenotypeFitness {
 	}
 
 	public static void SeperateTOPhenotype(int[][] matrixCopy) {
-		int xt = 0, k = getK();
+		int start = 0, k = getK();
 		int[][] matrixPhen = new int[MainMethodCalls.rows][k];
 
 		for (int i = 0; i < ((matrixCopy.length / k) - 1); i += k) {
@@ -21,15 +23,14 @@ public class PhenotypeFitness {
 					for (int col = 0; col < (k); col++) {
 						for (int x = 0; x < MainMethodCalls.rows; x++) {
 
-							System.arraycopy(matrixCopy[x], xt, matrixPhen[x], 0, k);
-
+							System.arraycopy(matrixCopy[x],start, matrixPhen[x], 0, k);
 						}
 					}
 				}
 				// MainMethodCalls.matrixPhen = matrixPhen; //not needed anymore
 				// System.out.println("\nPhenotype population");// outputin //shows atleast 50
 				// MainMethodCalls.printMatrix(matrixPhen);// outputin //shows atleast 50
-				xt += k;
+				start += k;
 			}
 		}
 	}
@@ -70,7 +71,6 @@ public class PhenotypeFitness {
 	/**
 	 * 1 - Deceptive - Gets fitness of every phenotype chromosome in the population
 	 **/
-
 	public static int evaluateDeceptivePhenFitness(int[][] matrix) {
 		int maxSum = 0, sum, chosenIn = 0, count = 0;
 		System.out.println("\nCreatures Phenotype Fitness");
@@ -95,7 +95,6 @@ public class PhenotypeFitness {
 		System.out.println("Highest Phenotype Fitness: " + maxSum); // out
 		System.out.println("Chosen index: " + (chosenIn + 1));// out //new
 		return chosenIn; // new
-
 	}
 
 	/**
@@ -104,7 +103,6 @@ public class PhenotypeFitness {
 	 **/
 	public static int[] getDeceptiveRowFitnessPhenotype(int matrixPhen[][], int rowIndex) {
 		int sum = 0, count = 0, i = 0;
-
 		int[] row = matrixPhen[rowIndex];
 		for (int value : row) {
 			if (i % getK() == 0)
@@ -117,15 +115,11 @@ public class PhenotypeFitness {
 			if (count == getK())
 				sum += 20;// added
 		}
-
 		System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);// output
-
 		int ar[] = new int[2];
 		ar[0] = sum;
 		ar[1] = rowIndex;
-
 		return ar;
-
 	}
 
 	public static int evaluatePhenRowsFitness(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {

@@ -28,14 +28,11 @@ public class MainMethodCalls {
 		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix); //deceptive
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
-		//PhenotypeFitness.evaluatePhenFitness(matrixPhen);//Phenotype //non deceptive
-		//PhenotypeFitness.evaluatePhenFitness(matrix);//Phenotype //non deceptive
+		//PhenotypeFitness.evaluatePhenFitness(matrix);//Phenotype //non deceptive 
 		PhenotypeFitness.evaluateDeceptivePhenFitness(matrix);//Phenotype // deceptive
-		PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix, 0);
 
 		System.exit(0);
 		
-		//PhenotypeFitness.evaluateDeceptivePhenFitness(matrixPhen);//Phenotype //deceptive
 		
 		for (int g = 0; g < GEN; g++) {
 			System.out.println("---------------- \t New Generation ("+(g+1)+") \t ----------------");

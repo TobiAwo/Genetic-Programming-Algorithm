@@ -15,6 +15,9 @@ public class Crossover {
 		System.arraycopy(tempMatrix[ranRow2], 0, matrixCopy[ranRow1], 0, (matrixCopy[0].length / 2));
 	}
 
+	
+	
+	
 	public static void crossoverGuided(int[][] matrixPhen, int indexRow1) {
 		//rename matrixphen to matrix
 		float maxFitness = 0, mAXdifference = 0, equation = 0, equationBest = 0;
@@ -39,9 +42,11 @@ public class Crossover {
 			}
 			System.out.println("Row 2 index : " + (indexRow2 + 1)); // printing out index of second creature //out
 			System.out.println("Row 2 fitness : " + (fitnessRow2)); // printing out fitness of second creature//out
+			
 			if (fitnessRow2 > maxFitness) { // NEW
 				maxFitness = fitnessRow2; // COUNTS MAX FITNESS
 			}
+			///////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 			if (fitnessRow1[0] == fitnessRow2) {
 				System.out.println("- Fitness equal -\n");//out
 				difference = 0;
@@ -54,6 +59,7 @@ public class Crossover {
 				System.out.println(" - row 2 bigger -\n");//out
 				difference = (fitnessRow2 - fitnessRow1[0]);
 			}
+			//////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 			if (difference > mAXdifference) { // COUNTS MAX DIFFERENCE
 				mAXdifference = difference;
 				indexMaxDifference = indexRow2;
