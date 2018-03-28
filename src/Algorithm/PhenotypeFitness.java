@@ -28,8 +28,8 @@ public class PhenotypeFitness {
 					}
 				}
 				// MainMethodCalls.matrixPhen = matrixPhen; //not needed anymore
-				// System.out.println("\nPhenotype population");// outputin //shows atleast 50
-				// MainMethodCalls.printMatrix(matrixPhen);// outputin //shows atleast 50
+				 System.out.println("\nPhenotype population");// outputin //shows atleast 50
+				 MainMethodCalls.printMatrix(matrixPhen);// outputin //shows atleast 50
 				start += k;
 			}
 		}

@@ -29,10 +29,11 @@ public class MainMethodCalls {
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
 		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		//PhenotypeFitness.evaluatePhenFitness(matrix);//Phenotype //non deceptive 
-		PhenotypeFitness.evaluateDeceptivePhenFitness(matrix);//Phenotype // deceptive
-		PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix,0);//Phenotype // deceptive
+		//PhenotypeFitness.evaluateDeceptivePhenFitness(matrix);//Phenotype // deceptive
+		//PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix,0);//Phenotype // deceptive
 		
-		Crossover.crossoverGuided(matrix, 0);
+		Crossover.decepFitCrossover(matrix, 0);
+		
 
 		System.exit(0);
 		
