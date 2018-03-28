@@ -1,6 +1,8 @@
 package Algorithm;
 //import src.Algorithm.Scanner;
 
+import java.util.Arrays;
+
 public class PhenotypeFitness {
 
 	public static int getK() {
@@ -9,7 +11,7 @@ public class PhenotypeFitness {
 	}
 
 	public static void SeperateTOPhenotype(int[][] matrixCopy) {
-		int xt = 0, k = 3; // int k = getK();
+		int xt = 0, k = getK();
 		int[][] matrixPhen = new int[MainMethodCalls.rows][k];
 
 		for (int i = 0; i < ((matrixCopy.length / k) - 1); i += k) {
@@ -68,20 +70,20 @@ public class PhenotypeFitness {
 	/**
 	 * 1 - Deceptive - Gets fitness of every phenotype chromosome in the population
 	 **/
+
 	public static int evaluateDeceptivePhenFitness(int[][] matrix) {
 		int maxSum = 0, sum, chosenIn = 0, count = 0;
 		System.out.println("\nCreatures Phenotype Fitness");
-
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
 			for (int j = 0; j < matrix[i].length; j++) {
-				if (j % 3 == 0)
+				if (j % getK() == 0)
 					count = 0;
 				if (matrix[i][j] == 1)
 					sum++;
 				else
 					count++;
-				if (count == 3) 
+				if (count == getK())
 					sum += 20;
 			}
 			if (sum > maxSum) {
@@ -102,21 +104,21 @@ public class PhenotypeFitness {
 	 **/
 	public static int[] getDeceptiveRowFitnessPhenotype(int matrixPhen[][], int rowIndex) {
 		int sum = 0, count = 0, i = 0;
-		
+
 		int[] row = matrixPhen[rowIndex];
-		for (int value : row) {	
-			if (i % 3 == 0)
+		for (int value : row) {
+			if (i % getK() == 0)
 				count = 0;
 			i++;
 			if (value == 1)
 				sum++;
 			else
 				count++;
-			if (count == 3) 
+			if (count == getK())
 				sum += 20;// added
 		}
 
-		 System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);//output
+		System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);// output
 
 		int ar[] = new int[2];
 		ar[0] = sum;
