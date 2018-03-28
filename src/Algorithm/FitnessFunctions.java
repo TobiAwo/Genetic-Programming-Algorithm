@@ -90,7 +90,7 @@ public class FitnessFunctions {
 		return ar;
 	}
 
-	/** 3 - Compares fitness of two chosen chromosome and gets highest **/
+	/** 3 - Compares fitness of two chosen chromosome and gets highest **/// - Tournament selection
 	public static int evaluateRowsFitness(int[][] matrix, int[] sumIn1, int[] sumIn2) {
 		int biggestRowSumIndex = 0;
 		if ((sumIn1[0]) > (sumIn2[0])) {

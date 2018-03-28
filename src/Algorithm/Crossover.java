@@ -18,7 +18,7 @@ public class Crossover {
 	
 	
 	
-	public static void crossoverGuided(int[][] matrixPhen, int indexRow1) {
+	public static void crossoverGuidedFake(int[][] matrixPhen, int indexRow1) {
 		//rename matrixphen to matrix
 		float maxFitness = 0, mAXdifference = 0, equation = 0, equationBest = 0;
 		int difference = 0, indexMaxDifference = 0;
@@ -37,8 +37,10 @@ public class Crossover {
 
 		for (int indexRow2 = 0; indexRow2 < matrixPhen.length; indexRow2++) {
 			int fitnessRow2 = 0;// Starts count from zero again
-			for (int k = 0; k < matrixPhen[indexRow2].length; k++) { // marks one individual
-				fitnessRow2 += matrixPhen[indexRow2][k]; // counting 1's
+			for (int j = 0; j < matrixPhen[indexRow2].length; j++) { // marks one individual
+				//fitnessRow2 += matrixPhen[indexRow2][j]; // counting 1's
+				if (matrixPhen[indexRow2][j] == 1)
+					fitnessRow2++;
 			}
 			System.out.println("Row 2 index : " + (indexRow2 + 1)); // printing out index of second creature //out
 			System.out.println("Row 2 fitness : " + (fitnessRow2)); // printing out fitness of second creature//out
@@ -47,6 +49,10 @@ public class Crossover {
 				maxFitness = fitnessRow2; // COUNTS MAX FITNESS
 			}
 			///////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+			int count = 0, saver = 0, minus =0;
+			//if (j % 3 == 0)
+				count = 0;//left here
+			
 			if (fitnessRow1[0] == fitnessRow2) {
 				System.out.println("- Fitness equal -\n");//out
 				difference = 0;
@@ -67,60 +73,42 @@ public class Crossover {
 			}
 		}
 		//Arrays.asList(matrixPhen).contains("21");
-		//System.out.println("last max difference and fitness: " + (mAXdifference) + " " +(maxFitness)); // prints out index of max difference//out
-		//System.out.println("last max difference index: " + (indexMaxDifference + 1)); // prints out index of max index
+		System.out.println("last max difference and fitness: " + (mAXdifference) + " " +(maxFitness)); // prints out index of max difference//out
+		System.out.println("last max difference index: " + (indexMaxDifference + 1)); // prints out index of max index
 																						// creature//out
 
-		// `````````````````````` FORMULA ABOVE PART 1 ````````````````````\\
-		//System.out.println("\n`FORMULA ABOVE PART 1`\n"); //out
-		for (int jindex = 0; jindex < matrixPhen.length; jindex++) {// new loop through all creatures starting
-			int JsumFitness = 0;
-			for (int coll = 0; coll < matrixPhen[jindex].length; coll++) {
-				JsumFitness += matrixPhen[jindex][coll];
-			}
-			//System.out.println("Fitness of Creature " + (jindex + 1) + ": " + JsumFitness);//out
 
-			if (fitnessRow1[0] == JsumFitness) {
-				//System.out.println("- Fitness equal -\n");//out
-				differenceIJ = 0;
-			}
-			if (fitnessRow1[0] > JsumFitness) {
-				//System.out.println(" - row 1 bigger -\n");//out
-				differenceIJ = (fitnessRow1[0] - JsumFitness);
-			}
-			if (fitnessRow1[0] < JsumFitness) {
-				//System.out.println(" - row 2 bigger -\n");//out
-				differenceIJ = (JsumFitness - fitnessRow1[0]);
-			}
-			equation = (differenceIJ / mAXdifference) + (JsumFitness / maxFitness);
-//			System.out.println("for i: " + jindex);
-//			System.out.println("differenceIJ: " + differenceIJ);
-//			System.out.println("mAXdifference: " + mAXdifference);
-//			System.out.println("JsumFitness: " + JsumFitness);
-//			System.out.println("maxFitness: " + maxFitness);
-//			System.out.println("equation: " + equation);
-//			System.out.println("equationBest: " + equationBest);
-			if (equation > equationBest) {
-				equationBest = equation;
-				jindexMaxEquation = jindex;
-				//System.out.println("max equation changed: " + jindexMaxEquation + "\n");//out
-			}
-		} // Loop of all creatures ending
-		//System.out.println("last max equation sum is : " + equationBest);//out
-		//System.out.println("SECOND ROW CHOSEN IS ------: " + (jindexMaxEquation + 1));//out
-		// `````````````````````` FORMULA BELOW PART 1 ````````````````````\\
+	}
+
+	
+	
+	
+	
+	//use tournament selection here for index one
+	//call evaluateRowsFitness
+	public static void crossoverGuided(int[][] matrixPhen, int indexRow1) {
+		//rename matrixphen to matrix
+		float maxFitness = 0, mAXdifference = 0, equation = 0, equationBest = 0;
+		int difference = 0, indexMaxDifference = 0;
+		int differenceIJ = 0, jindexMaxEquation = 0;
+		
 		/** NON-Deceptive Begins Here **/
-		// Separate fitness 2 // maxdiffrence creature is marked as row to count
-		int[] fitnessRow2 = PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, jindexMaxEquation);
+		//int[] fitnessRow1 = PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, indexRow1);
 		/** NON-Deceptive Ends Here **/
 		
-		/** Deceptive Begins */
-// 		int[] fitnessRow1 = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrixPhen, jindexMaxEquation);
-		/** Deceptive Ends Here */		
-		//System.out.println("FITNESS OF SECOND ROW CHOSEN IS: " + (fitnessRow2) + "\n");//prints fitness of chosen creature//out
-		int[][] matrix = MainMethodCalls.matrix; // gets matrix
-		crossover(MainMethodCalls.matrix, indexRow1, jindexMaxEquation);
-		//calls crossover method to cross both creatures
-		//MainMethodCalls.printMatrix(matrix); // prints new matrix //out
+		/** Deceptive **/
+ 		int[] fitnessRow1 = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrixPhen, indexRow1);
+		/** Deceptive Ends Here **/
+		
+		System.out.println("FIRST ROW CHOSEN IS ------: " + (indexRow1 + 1));// prints index one for me to see //out
+		System.out.println("FITNESS OF FIRST ROW CHOSEN IS: " + fitnessRow1[0] + "\n"); // Prints fitness of index 1 //out
+
+		for (int i = 0; i<10 ; i++) {
+			
+			int[] test = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrixPhen, i);
+			System.out.println(String.valueOf(test[0]));
+		}
+		
+		System.out.println("test");
 	}
 }

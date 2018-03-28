@@ -19,9 +19,9 @@ public class PhenotypeFitness {
 		for (int i = 0; i < ((matrixCopy.length / k) - 1); i += k) {
 			for (int j = 0; j < matrixCopy[i].length; j += k) {
 
-				for (int row = 0; row < MainMethodCalls.rows; row++) {
+				for (int row = 0; row < MainMethodCalls.rows; row++) {//change
 					for (int col = 0; col < (k); col++) {
-						for (int x = 0; x < MainMethodCalls.rows; x++) {
+						for (int x = 0; x < MainMethodCalls.rows; x++) {//change
 
 							System.arraycopy(matrixCopy[x],start, matrixPhen[x], 0, k);
 						}

@@ -27,9 +27,12 @@ public class MainMethodCalls {
 		//FitnessFunctions.DisplayEachRowFitness(matrix); //non deceptive
 		//FitnessFunctions.DisplayEachDeceptiveRowFitness(matrix); //deceptive
 		/** 2. EVALUATE PHENOTYPE FITNESS **/
-		PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
+		//PhenotypeFitness.SeperateTOPhenotype(matrix);//Phenotype
 		//PhenotypeFitness.evaluatePhenFitness(matrix);//Phenotype //non deceptive 
 		PhenotypeFitness.evaluateDeceptivePhenFitness(matrix);//Phenotype // deceptive
+		PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix,0);//Phenotype // deceptive
+		
+		Crossover.crossoverGuided(matrix, 0);
 
 		System.exit(0);
 		
@@ -75,20 +78,24 @@ public class MainMethodCalls {
 				//Crossover.crossoverGuided(matrixPhen, OutputEvaluatePhenFitness);
 			
 			}
-			/** UPDATE PHENOTYPE POPULATION **/
-			PhenotypeFitness.SeperateTOPhenotype(matrixNext);//Phenotype
+			
+			int mutationRate = 1, crossoverRate = 1;
+			for (int rate = 0; rate < mutationRate; rate++) {
+				/** MUTATION **/
+				Mutation.mutation(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomColumn());
+			}
 
-			/** MUTATION **/
-			Mutation.mutation(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomColumn());
-			
-			/** STANDARD CROSSOVER **/
-			Crossover.crossover(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomRow());
-			
-			/** GUIDED CROSSOVER **/
-			//Crossover.crossoverGuided(matrixNext, FitnessFunctions.DisplayEachRowFitness(matrixNext)); //non deceptive
-			//Crossover.crossoverGuided(matrixNext, FitnessFunctions.DisplayEachDeceptiveRowFitness(matrixNext)); //deceptive
-			//Crossover.crossoverGuided(matrixPhen, PhenotypeFitness.evaluatePhenFitness(matrixPhen)); //non deceptive
-			//Crossover.crossoverGuided(matrixPhen, PhenotypeFitness.evaluateDeceptivePhenFitness(matrixPhen));
+			for (int rate = 0; rate < crossoverRate; rate++) {
+
+				/** STANDARD CROSSOVER **/
+				Crossover.crossover(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomRow());
+				
+				/** GUIDED CROSSOVER **/
+				//Crossover.crossoverGuided(matrixNext, FitnessFunctions.DisplayEachRowFitness(matrixNext)); //non deceptive
+				//Crossover.crossoverGuided(matrixNext, FitnessFunctions.DisplayEachDeceptiveRowFitness(matrixNext)); //deceptive
+				//Crossover.crossoverGuided(matrixPhen, PhenotypeFitness.evaluatePhenFitness(matrixPhen)); //non deceptive
+				//Crossover.crossoverGuided(matrixPhen, PhenotypeFitness.evaluateDeceptivePhenFitness(matrixPhen));
+			}
 			
 			/** UPDATE POPULATION **/
 			updatePopulation();
