@@ -45,70 +45,66 @@ public class Crossover {
 		System.out.println("test");
 	}
 	
-	
-	  public static void decepFitCrossover(int[][] matrix, int selectedRowIndex) {
-	        //PhenotypeFitness.getK()
-	        int groupSize = 3;
-	        //int numRows = matrix.length;
-	        int numCols = matrix[0].length;
-	        int numGroups = numCols / groupSize;
-	        int maxDiff = 0, chosenInd = 0;
-	        int[][] sums = new int[matrix.length][numGroups];
-	       
-	        for (int r=0; r<matrix.length; r++) {
-	            int[] row = matrix[r];
-	           
-	            for (int g = 0; g<numGroups; g ++) {
-	                int[] group = Arrays.copyOfRange(row, g*3, g*3 + groupSize);
-	   				//System.out.println("\n sum:"+groupSize);// outputin //shows atleast 50
+	public static void decepFitCrossover(int[][] matrix, int selectedRowIndex) { 
+		int maxDiff = 0, chosenInd = 0;	
+		int groupSize = PhenotypeFitness.getK();
+		int numGroups = ((matrix[0].length) / groupSize);
+		int[][] sums = new int[matrix.length][numGroups];
 
-	                int groupSum = sumOf(group);
+		for (int r = 0; r < matrix.length; r++) {
+			int[] row = matrix[r];
 
-	              //  if (groupSum == 0) {
-	               // 	groupSum = 20;
-	               // }
-	                sums[r][g] = groupSum;
-	   				//System.out.println("\n sum:"+sums[r][g]);// outputin //shows atleast 50
+			for (int g = 0; g < numGroups; g++) {
+				int[] group = Arrays.copyOfRange(row, g * 3, g * 3 + groupSize);
+				// System.out.println("\n sum:"+groupSize);// outputin //shows atleast 50
+				int groupSum = sumOf(group);
 
-	            }
-	        }
-	       
-	        int[] selectedRowGroups = sums[selectedRowIndex];
-	        int[] differences = new int[matrix.length];
-	       
-	        for (int r=0; r<matrix.length; r++) {
-	        	
-	        	int diff = 0;
-	            for (int g = 0; g<numGroups; g++) {
-	                
-	                diff += Math.abs(selectedRowGroups[g] - sums[r][g]);
-	            }  
-	            differences[r] = diff;
-				if (diff > maxDiff) {
-					maxDiff = diff;
-					chosenInd = r;
-					}
-	        }
-			 System.out.println("\n population");// outputin //shows atleast 50
-			 System.out.println(Arrays.toString(differences));
-			 System.out.println("Max difference: "+maxDiff);// outputin //shows atleast 50
-			 System.out.println("Chosen Index: "+ chosenInd);// outputin //shows atleast 50
+				// if (groupSum == 0)
 
-				
-			 //MainMethodCalls.printMatrix(differences);// outputin //shows atleast 5 
-	    //    System.out.println(differences);
-	    }
-	   
-	    public static int sumOf(int[] integers) {
-	        int total = 0; int start = 0;
-	        for (int i = 0; i < integers.length; i++) {
-				if (integers[i] == 1)
-			        total ++;       
-	        System.out.println("\n integer i:" + integers[i]);
+				if (Arrays.asList(groupSum).contains(000))
+					groupSum = 20;
 
-	        }
-			System.out.println("\n sum:"+total);
+				sums[r][g] = groupSum;
+				// System.out.println("\n sum:"+sums[r][g]);// outputin //shows atleast 50
 
-	        return total;
-	    }
+			}
+		}
+
+		int[] selectedRowGroups = sums[selectedRowIndex];
+		int[] differences = new int[matrix.length];
+
+		for (int r = 0; r < matrix.length; r++) {
+
+			int diff = 0;
+			for (int g = 0; g < numGroups; g++) {
+
+				diff += Math.abs(selectedRowGroups[g] - sums[r][g]);
+			}
+			differences[r] = diff;
+			if (diff > maxDiff) {
+				maxDiff = diff;
+				chosenInd = r;
+			}
+		}
+		System.out.println("\n population");// outputin //shows atleast 50
+		System.out.println(Arrays.toString(differences));
+		System.out.println("Max difference: " + maxDiff);// outputin //shows atleast 50
+		System.out.println("Chosen Index: " + chosenInd);// outputin //shows atleast 50
+
+		// MainMethodCalls.printMatrix(differences);// outputin //shows atleast 5
+		// System.out.println(differences);
+	}
+
+	public static int sumOf(int[] integers) {
+		int total = 0;
+		for (int i = 0; i < integers.length; i++) {
+			if (integers[i] == 1)
+				total++;
+			System.out.println("\n integer i:" + integers[i]);
+
+		}
+		System.out.println("\n sum:" + total);
+
+		return total;
+	}
 }
