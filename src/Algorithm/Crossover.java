@@ -49,13 +49,13 @@ public class Crossover {
 	  public static void decepFitCrossover(int[][] matrix, int selectedRowIndex) {
 	        //PhenotypeFitness.getK()
 	        int groupSize = 3;
-	        int numRows = matrix.length;
+	        //int numRows = matrix.length;
 	        int numCols = matrix[0].length;
 	        int numGroups = numCols / groupSize;
+	        int maxDiff = 0, chosenInd = 0;
+	        int[][] sums = new int[matrix.length][numGroups];
 	       
-	        int[][] sums = new int[numRows][numGroups];
-	       
-	        for (int r=0; r<numRows; r++) {
+	        for (int r=0; r<matrix.length; r++) {
 	            int[] row = matrix[r];
 	           
 	            for (int g = 0; g<numGroups; g ++) {
@@ -74,20 +74,26 @@ public class Crossover {
 	        }
 	       
 	        int[] selectedRowGroups = sums[selectedRowIndex];
-	        int[] differences = new int[numRows];
+	        int[] differences = new int[matrix.length];
 	       
-	        for (int r=0; r<numRows; r++) {
+	        for (int r=0; r<matrix.length; r++) {
 	        	
 	        	int diff = 0;
-	            for (int g=0; g<numGroups; g++) {
+	            for (int g = 0; g<numGroups; g++) {
 	                
 	                diff += Math.abs(selectedRowGroups[g] - sums[r][g]);
 	            }  
 	            differences[r] = diff;
+				if (diff > maxDiff) {
+					maxDiff = diff;
+					chosenInd = r;
+					}
 	        }
-	        
 			 System.out.println("\n population");// outputin //shows atleast 50
-			 	System.out.println(Arrays.toString(differences));
+			 System.out.println(Arrays.toString(differences));
+			 System.out.println("Max difference: "+maxDiff);// outputin //shows atleast 50
+			 System.out.println("Chosen Index: "+ chosenInd);// outputin //shows atleast 50
+
 				
 			 //MainMethodCalls.printMatrix(differences);// outputin //shows atleast 5 
 	    //    System.out.println(differences);
@@ -96,8 +102,8 @@ public class Crossover {
 	    public static int sumOf(int[] integers) {
 	        int total = 0; int start = 0;
 	        for (int i = 0; i < integers.length; i++) {
-	        total += integers[i];
-	        
+				if (integers[i] == 1)
+			        total ++;       
 	        System.out.println("\n integer i:" + integers[i]);
 
 	        }
@@ -105,13 +111,4 @@ public class Crossover {
 
 	        return total;
 	    }
-	    
-/*	    public static int sumOf1(int[] integers) {
-	        int total = 0;
-	        for (int i = 0; i < integers.length; total += integers[i++]); {
-		        System.out.println("\n i:" + integers[i++]);// outputin //shows atleast 50	
-			//System.out.println("\n sum:"+total);// outputin //shows atleast 50
-	        }
-	        return total;
-	    } */ 
 }
