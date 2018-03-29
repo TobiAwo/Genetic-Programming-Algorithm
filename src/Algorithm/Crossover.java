@@ -59,14 +59,11 @@ public class Crossover {
 				// System.out.println("\n sum:"+groupSize);// outputin //shows atleast 50
 				int groupSum = sumOf(group);
 
-				// if (groupSum == 0)
-
 				if (Arrays.asList(groupSum).contains(000))
 					groupSum = 20;
 
 				sums[r][g] = groupSum;
 				// System.out.println("\n sum:"+sums[r][g]);// outputin //shows atleast 50
-
 			}
 		}
 
@@ -76,23 +73,20 @@ public class Crossover {
 		for (int r = 0; r < matrix.length; r++) {
 
 			int diff = 0;
-			for (int g = 0; g < numGroups; g++) {
-
+			for (int g = 0; g < numGroups; g++)
 				diff += Math.abs(selectedRowGroups[g] - sums[r][g]);
-			}
+
 			differences[r] = diff;
+			
 			if (diff > maxDiff) {
 				maxDiff = diff;
 				chosenInd = r;
 			}
 		}
-		System.out.println("\n population");// outputin //shows atleast 50
+		System.out.println("\n population");
 		System.out.println(Arrays.toString(differences));
-		System.out.println("Max difference: " + maxDiff);// outputin //shows atleast 50
-		System.out.println("Chosen Index: " + chosenInd);// outputin //shows atleast 50
-
-		// MainMethodCalls.printMatrix(differences);// outputin //shows atleast 5
-		// System.out.println(differences);
+		System.out.println("Max difference: " + maxDiff);
+		System.out.println("Chosen Index: " + chosenInd);
 	}
 
 	public static int sumOf(int[] integers) {
