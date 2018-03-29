@@ -58,14 +58,18 @@ public class Crossover {
 	        for (int r=0; r<numRows; r++) {
 	            int[] row = matrix[r];
 	           
-	            for (int g=0; g<numGroups; g++) {
-	                int[] group = Arrays.copyOfRange(row, g*1, g*1 + groupSize);
+	            for (int g = 0; g<numGroups; g ++) {
+	                int[] group = Arrays.copyOfRange(row, g*3, g*3 + groupSize);
+	   				//System.out.println("\n sum:"+groupSize);// outputin //shows atleast 50
+
 	                int groupSum = sumOf(group);
-	                
+
 	              //  if (groupSum == 0) {
 	               // 	groupSum = 20;
 	               // }
 	                sums[r][g] = groupSum;
+	   				//System.out.println("\n sum:"+sums[r][g]);// outputin //shows atleast 50
+
 	            }
 	        }
 	       
@@ -83,7 +87,6 @@ public class Crossover {
 	        }
 	        
 			 System.out.println("\n population");// outputin //shows atleast 50
-			 
 			 	System.out.println(Arrays.toString(differences));
 				
 			 //MainMethodCalls.printMatrix(differences);// outputin //shows atleast 5 
@@ -91,8 +94,24 @@ public class Crossover {
 	    }
 	   
 	    public static int sumOf(int[] integers) {
-	        int total = 0;
-	        for (int i = 0; i < integers.length; total += integers[i++]);
+	        int total = 0; int start = 0;
+	        for (int i = 0; i < integers.length; i++) {
+	        total += integers[i];
+	        
+	        System.out.println("\n integer i:" + integers[i]);
+
+	        }
+			System.out.println("\n sum:"+total);
+
 	        return total;
 	    }
+	    
+/*	    public static int sumOf1(int[] integers) {
+	        int total = 0;
+	        for (int i = 0; i < integers.length; total += integers[i++]); {
+		        System.out.println("\n i:" + integers[i++]);// outputin //shows atleast 50	
+			//System.out.println("\n sum:"+total);// outputin //shows atleast 50
+	        }
+	        return total;
+	    } */ 
 }
