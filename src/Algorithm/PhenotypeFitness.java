@@ -39,7 +39,7 @@ public class PhenotypeFitness {
 	 * 1 - NON-Deceptive - Gets fitness of every phenotype chromosome in the
 	 * population
 	 **/
-	public static int evaluatePhenFitness(int[][] matrixPhen) {
+	public static int[] evaluatePhenFitness(int[][] matrixPhen) {
 		int maxSum = 0, sum, chosenIn = 0;
 		System.out.println("\nCreatures Phenotype Fitness");// output
 		for (int i = 0; i < matrixPhen.length; i++) {
@@ -56,7 +56,11 @@ public class PhenotypeFitness {
 		}
 		System.out.println("Highest Phenotype Fitness: " + maxSum);// output
 		System.out.println("Chosen index: " + chosenIn);// out //new
-		return chosenIn; // new
+		int maxIndiv[] = new int[2];
+		maxIndiv[0] = maxSum;
+		maxIndiv[1] = chosenIn;
+		
+		return maxIndiv; // new
 
 	}
 

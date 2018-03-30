@@ -50,20 +50,26 @@ public class Crossover {
 		int groupSize = PhenotypeFitness.getK();
 		int numGroups = ((matrix[0].length) / groupSize);
 		int[][] sums = new int[matrix.length][numGroups];
-
+		//int[] maxInd = 	PhenotypeFitness.evaluatePhenFitness(matrix);
+		float maxFitness = 0, equation = 0, equationBest = 0;
+		int difference = 0, indexMaxDifference = 0, differenceIJ = 0, jindexMaxEquation = 0;
+		
+		int fitness = 0;//added
 		for (int r = 0; r < matrix.length; r++) {
+			fitness = 0; //added
 			int[] row = matrix[r];
-
+			for (int value : row) {
+				if (value == 1)
+					fitness++;
+			}
 			for (int g = 0; g < numGroups; g++) {
 				int[] group = Arrays.copyOfRange(row, g * 3, g * 3 + groupSize);
-				// System.out.println("\n sum:"+groupSize);// outputin //shows atleast 50
 				int groupSum = sumOf(group);
 
-				if (Arrays.asList(groupSum).contains(000))
-					groupSum = 20;
+				//if (Arrays.asList(groupSum).contains(000))
+					//groupSum = 20;
 
 				sums[r][g] = groupSum;
-				// System.out.println("\n sum:"+sums[r][g]);// outputin //shows atleast 50
 			}
 		}
 
@@ -87,6 +93,30 @@ public class Crossover {
 		System.out.println(Arrays.toString(differences));
 		System.out.println("Max difference: " + maxDiff);
 		System.out.println("Chosen Index: " + chosenInd);
+		
+					//////////////////////\\\\\\\\\\\\\\\\\\\\
+		
+		int[] maxIndFitness = 	PhenotypeFitness.evaluatePhenFitness(matrix);
+		for (int r = 0; r < matrix.length; r++) {
+
+		int[] fitness = PhenotypeFitness.getRowsFitnessPhenotype(matrix, r);
+
+			int diff = 0;
+			for (int g = 0; g < numGroups; g++)
+				diff += Math.abs(selectedRowGroups[g] - sums[r][g]);
+
+			differences[r] = diff;
+			
+			//diff = differenceIJ
+			//maxDiff = mAXdifference 
+			//maxIndFitness = maxFitness
+			
+			equation = (diff / maxDiff) + (fitness / maxIndFitness[0]);
+			System.out.println("SUM: " + fitness);
+
+
+		}
+		
 	}
 
 	public static int sumOf(int[] integers) {
@@ -95,10 +125,10 @@ public class Crossover {
 			if (integers[i] == 1)
 				total++;
 			System.out.println("\n integer i:" + integers[i]);
-
 		}
 		System.out.println("\n sum:" + total);
-
 		return total;
 	}
+	
+	
 }
