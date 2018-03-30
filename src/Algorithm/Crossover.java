@@ -19,32 +19,6 @@ public class Crossover {
 
 	//use tournament selection here for index one
 	//call evaluateRowsFitness
-	public static void crossoverGuided(int[][] matrixPhen, int indexRow1) {
-		//rename matrixphen to matrix
-		float maxFitness = 0, mAXdifference = 0, equation = 0, equationBest = 0;
-		int difference = 0, indexMaxDifference = 0;
-		int differenceIJ = 0, jindexMaxEquation = 0;
-		
-		/** NON-Deceptive Begins Here **/
-		int[] nonDecfitnessRow1 = PhenotypeFitness.getRowsFitnessPhenotype(matrixPhen, indexRow1);
-		/** NON-Deceptive Ends Here **/
-		/** Deceptive **/
- 		int[] decFitnessRow1 = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrixPhen, indexRow1);
-		/** Deceptive Ends Here **/
-		
-		System.out.println("FIRST ROW CHOSEN IS ------: " + (indexRow1 + 1));// prints index one for me to see //out
-		System.out.println("FITNESS OF FIRST ROW CHOSEN IS: " + decFitnessRow1[0] + "\n"); // Prints fitness of index 1 //out
-
-		for (int i = 0; i<10 ; i++) {
-			
-			int[] rowFitnesses = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrixPhen, i);
-			
-			
-		}
-		
-		System.out.println("test");
-	}
-	
 	public static void decepFitCrossover(int[][] matrix, int selectedRowIndex) { 
 		int maxDiff = 0, chosenInd = 0;	
 		int groupSize = PhenotypeFitness.getK();
@@ -52,16 +26,12 @@ public class Crossover {
 		int[][] sums = new int[matrix.length][numGroups];
 		//int[] maxInd = 	PhenotypeFitness.evaluatePhenFitness(matrix);
 		float maxFitness = 0, equation = 0, equationBest = 0;
+		
 		int difference = 0, indexMaxDifference = 0, differenceIJ = 0, jindexMaxEquation = 0;
 		
-		int fitness = 0;//added
 		for (int r = 0; r < matrix.length; r++) {
-			fitness = 0; //added
 			int[] row = matrix[r];
-			for (int value : row) {
-				if (value == 1)
-					fitness++;
-			}
+
 			for (int g = 0; g < numGroups; g++) {
 				int[] group = Arrays.copyOfRange(row, g * 3, g * 3 + groupSize);
 				int groupSum = sumOf(group);
@@ -96,27 +66,45 @@ public class Crossover {
 		
 					//////////////////////\\\\\\\\\\\\\\\\\\\\
 		
-		int[] maxIndFitness = 	PhenotypeFitness.evaluatePhenFitness(matrix);
 		for (int r = 0; r < matrix.length; r++) {
-
-		int[] fitness = PhenotypeFitness.getRowsFitnessPhenotype(matrix, r);
+		int[] maxIndFitness = 	PhenotypeFitness.evaluatePhenFitness(matrix);
+		int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, r);
 
 			int diff = 0;
 			for (int g = 0; g < numGroups; g++)
 				diff += Math.abs(selectedRowGroups[g] - sums[r][g]);
 
 			differences[r] = diff;
+					
+		 equation = ((float) (((float)diff / ((float)maxDiff)) + (((float)fitnessJ[0])) / ((float)maxIndFitness[0])));
+			System.out.println("SUM: " + fitnessJ[0]);
+			System.out.println("Max: " + maxIndFitness[0]);
 			
-			//diff = differenceIJ
-			//maxDiff = mAXdifference 
-			//maxIndFitness = maxFitness
+			if (diff > maxDiff)
+				maxDiff = diff;
 			
-			equation = (diff / maxDiff) + (fitness / maxIndFitness[0]);
-			System.out.println("SUM: " + fitness);
-
+			if (equation > equationBest) {
+				equationBest = equation;
+				jindexMaxEquation = fitnessJ[1];
+				System.out.println("max equation changed: " + jindexMaxEquation + "\n");
+			}
+			
+			System.out.println("for i: " + fitnessJ[0]);
+			System.out.println("differenceIJ: " + diff);
+			System.out.println("max difference: " + maxDiff);
+			System.out.println("JsumFitness: " + fitnessJ[0]);
+			System.out.println("maxFitness: " + maxIndFitness[0]);
+			System.out.println("equation: " + equation);
+			System.out.println("Best equation : " + equationBest);
 
 		}
-		
+		System.out.println("last max equation sum is : " + equationBest);
+		System.out.println("SECOND ROW CHOSEN IS ------: " + (jindexMaxEquation + 1));
+		int[] fiinalFitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, jindexMaxEquation);
+		System.out.println("FITNESS OF SECOND ROW CHOSEN IS: " + (fiinalFitnessJ[0]) + "\n");//prints fitness of chosen creature
+		crossover(matrix, selectedRowIndex, jindexMaxEquation); //calls crossover method to cross both creatures
+		MainMethodCalls.printMatrix(matrix); // prints new matrix
+
 	}
 
 	public static int sumOf(int[] integers) {

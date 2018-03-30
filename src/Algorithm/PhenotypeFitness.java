@@ -52,10 +52,10 @@ public class PhenotypeFitness {
 				maxSum = sum;
 				chosenIn = i; // new
 			}
-			System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum);// output
+			//System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum);// output
 		}
-		System.out.println("Highest Phenotype Fitness: " + maxSum);// output
-		System.out.println("Chosen index: " + chosenIn);// out //new
+		//System.out.println("Highest Phenotype Fitness: " + maxSum);// output
+		//System.out.println("Chosen index: " + chosenIn);// out //new
 		int maxIndiv[] = new int[2];
 		maxIndiv[0] = maxSum;
 		maxIndiv[1] = chosenIn;
