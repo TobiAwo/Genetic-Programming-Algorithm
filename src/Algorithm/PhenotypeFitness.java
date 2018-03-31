@@ -41,7 +41,7 @@ public class PhenotypeFitness {
 	 **/
 	public static int[] evaluatePhenFitness(int[][] matrixPhen) {
 		int maxSum = 0, sum, chosenIn = 0;
-		System.out.println("\nCreatures Phenotype Fitness");// output
+		//System.out.println("\nCreatures Phenotype Fitness");// output
 		for (int i = 0; i < matrixPhen.length; i++) {
 			sum = 0;
 			for (int j = 0; j < matrixPhen[i].length; j++) {
@@ -59,7 +59,6 @@ public class PhenotypeFitness {
 		int maxIndiv[] = new int[2];
 		maxIndiv[0] = maxSum;
 		maxIndiv[1] = chosenIn;
-		
 		return maxIndiv; // new
 
 	}
@@ -75,9 +74,9 @@ public class PhenotypeFitness {
 	/**
 	 * 1 - Deceptive - Gets fitness of every phenotype chromosome in the population
 	 **/
-	public static int evaluateDeceptivePhenFitness(int[][] matrix) {
+	public static int[] evaluateDeceptivePhenFitness(int[][] matrix) {
 		int maxSum = 0, sum, chosenIn = 0, count = 0;
-		System.out.println("\nCreatures Phenotype Fitness");
+		//System.out.println("\nCreatures Phenotype Fitness");
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
 			for (int j = 0; j < matrix[i].length; j++) {
@@ -94,11 +93,15 @@ public class PhenotypeFitness {
 				maxSum = sum;
 				chosenIn = i; // new
 			}
-			System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); // out
+			//System.out.println("Fitness of Phenotype " + (i + 1) + ": " + sum); // out
 		}
-		System.out.println("Highest Phenotype Fitness: " + maxSum); // out
-		System.out.println("Chosen index: " + (chosenIn + 1));// out //new
-		return chosenIn; // new
+		//System.out.println("Highest Phenotype Fitness: " + maxSum); // out
+		//System.out.println("Chosen index: " + (chosenIn + 1));// out //new
+		
+		int maxIndiv[] = new int[2];
+		maxIndiv[0] = maxSum;
+		maxIndiv[1] = chosenIn;
+		return maxIndiv; // new
 	}
 
 	/**
@@ -119,7 +122,7 @@ public class PhenotypeFitness {
 			if (count == getK())
 				sum += 20;// added
 		}
-		System.out.println("The sum of value in row " + (rowIndex + 1) + ": " + sum);// output
+		//System.out.println("The sum of value in row " + (rowIndex) + ": " + sum);// output
 		int ar[] = new int[2];
 		ar[0] = sum;
 		ar[1] = rowIndex;

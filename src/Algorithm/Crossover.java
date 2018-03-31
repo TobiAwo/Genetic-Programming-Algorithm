@@ -35,9 +35,11 @@ public class Crossover {
 			for (int g = 0; g < numGroups; g++) {
 				int[] group = Arrays.copyOfRange(row, g * 3, g * 3 + groupSize);
 				int groupSum = sumOf(group);
-
-				//if (Arrays.asList(groupSum).contains(000))
-					//groupSum = 20;
+				
+				/** NON-Deceptive Begins Here **/
+				if (Arrays.asList(groupSum).contains(000))
+					groupSum = 20;
+				/** NON-Deceptive Ends Here **/
 
 				sums[r][g] = groupSum;
 			}
@@ -67,41 +69,48 @@ public class Crossover {
 					//////////////////////\\\\\\\\\\\\\\\\\\\\
 		
 		for (int r = 0; r < matrix.length; r++) {
-		int[] maxIndFitness = 	PhenotypeFitness.evaluatePhenFitness(matrix);
-		int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, r);
-
+		/** NON-Deceptive Begins Here **/
+		//int[] maxIndFitness = PhenotypeFitness.evaluatePhenFitness(matrix);
+		//int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, r);
+		/** NON-Deceptive Ends Here **/
+		/** Deceptive **/
+		int[] maxIndFitness = PhenotypeFitness.evaluateDeceptivePhenFitness(matrix);
+ 		int[] fitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix, r);
+		/** Deceptive Ends Here **/
+		
 			int diff = 0;
 			for (int g = 0; g < numGroups; g++)
 				diff += Math.abs(selectedRowGroups[g] - sums[r][g]);
 
-			differences[r] = diff;
-					
-		 equation = ((float) (((float)diff / ((float)maxDiff)) + (((float)fitnessJ[0])) / ((float)maxIndFitness[0])));
-			System.out.println("SUM: " + fitnessJ[0]);
-			System.out.println("Max: " + maxIndFitness[0]);
-			
-			if (diff > maxDiff)
-				maxDiff = diff;
+			differences[r] = diff;	
+			equation = ((float) (((float)diff / ((float)maxDiff)) + (((float)fitnessJ[0])) / ((float)maxIndFitness[0])));
+			//System.out.println("SUM: " + fitnessJ[0]); dup
+			//System.out.println("Max: " + maxIndFitness[0]);dup
+				
+			System.out.println("\nfor index: " + fitnessJ[1]);
+			System.out.println("Fitness: " + fitnessJ[0]);
+			System.out.println("maxFitness: " + maxIndFitness[0]);
+			System.out.println("difference beteeen I and J: " + diff);
+			System.out.println("max difference: " + maxDiff);
+			System.out.println("equation : " + equation);
+			System.out.println("Best Current Equation : " + equationBest);
 			
 			if (equation > equationBest) {
 				equationBest = equation;
 				jindexMaxEquation = fitnessJ[1];
-				System.out.println("max equation changed: " + jindexMaxEquation + "\n");
+				System.out.println("max equation changed: " + jindexMaxEquation + "\n" + equationBest);///
 			}
-			
-			System.out.println("for i: " + fitnessJ[0]);
-			System.out.println("differenceIJ: " + diff);
-			System.out.println("max difference: " + maxDiff);
-			System.out.println("JsumFitness: " + fitnessJ[0]);
-			System.out.println("maxFitness: " + maxIndFitness[0]);
-			System.out.println("equation: " + equation);
-			System.out.println("Best equation : " + equationBest);
-
 		}
-		System.out.println("last max equation sum is : " + equationBest);
-		System.out.println("SECOND ROW CHOSEN IS ------: " + (jindexMaxEquation + 1));
-		int[] fiinalFitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, jindexMaxEquation);
-		System.out.println("FITNESS OF SECOND ROW CHOSEN IS: " + (fiinalFitnessJ[0]) + "\n");//prints fitness of chosen creature
+		System.out.println("\n"+"FINAL MAX EQUATION SUM IS : " + equationBest);
+		System.out.println("SECOND ROW CHOSEN IS: " + (jindexMaxEquation));
+		
+		/** NON-Deceptive Begins Here **/
+		//int[] finalFitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, jindexMaxEquation);
+		/** NON-Deceptive Ends Here **/
+		/** Deceptive **/
+ 		 int[] finalFitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix, jindexMaxEquation);
+		/** Deceptive Ends Here **/
+		System.out.println("FITNESS OF SECOND ROW CHOSEN IS: " + (finalFitnessJ[0]) + "\n");//prints fitness of chosen creature
 		crossover(matrix, selectedRowIndex, jindexMaxEquation); //calls crossover method to cross both creatures
 		MainMethodCalls.printMatrix(matrix); // prints new matrix
 
@@ -112,9 +121,9 @@ public class Crossover {
 		for (int i = 0; i < integers.length; i++) {
 			if (integers[i] == 1)
 				total++;
-			System.out.println("\n integer i:" + integers[i]);
+			//System.out.println("\n integer i:" + integers[i]);
 		}
-		System.out.println("\n sum:" + total);
+		//System.out.println("\n sum:" + total);
 		return total;
 	}
 	
