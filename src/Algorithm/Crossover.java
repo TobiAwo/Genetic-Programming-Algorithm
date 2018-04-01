@@ -92,7 +92,7 @@ public class Crossover {
 			System.out.println("maxFitness: " + maxIndFitness[0]);
 			System.out.println("difference beteeen I and J: " + diff);
 			System.out.println("max difference: " + maxDiff);
-			System.out.println("equation : " + equation);
+			System.out.println("equation: " + equation);
 			System.out.println("Best Current Equation : " + equationBest);
 			
 			if (equation > equationBest) {

@@ -8,8 +8,6 @@ public class MainMethodCalls {
 	public static int columns = 9;//20
 	static int[][] matrix = new int[rows][columns];
 	static int[][] matrixNext = new int[rows][columns];
-	static int[][] matrixPhen;
-	static int[][] matrixPhenNext;
 	static Random rnd = new Random();
 	static int GEN = 5;//100
 
@@ -80,7 +78,10 @@ public class MainMethodCalls {
 			
 			}
 			
-			int mutationRate = 1, crossoverRate = 1;
+			int mutatepercentage = 60, crosspercentage = 60;
+			int mutationRate = (int)(rows*(mutatepercentage/100.0f));
+			int crossoverRate = (int)(rows*(crosspercentage/100.0f));
+
 			for (int rate = 0; rate < mutationRate; rate++) {
 				/** MUTATION **/
 				Mutation.mutation(matrixNext, RandomNumbers.getRandomRow(), RandomNumbers.getRandomColumn());
