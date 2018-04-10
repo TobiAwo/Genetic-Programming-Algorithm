@@ -19,15 +19,12 @@ public class Crossover {
 
 	//use tournament selection here for index one
 	//call evaluateRowsFitness
-	public static void decepFitCrossover(int[][] matrix, int selectedRowIndex) { 
-		int maxDiff = 0, chosenInd = 0;	
+	public static void guidedCrossover(int[][] matrix, int selectedRowIndex) {
+		float equation = 0, equationBest = 0;
 		int groupSize = PhenotypeFitness.getK();
 		int numGroups = ((matrix[0].length) / groupSize);
 		int[][] sums = new int[matrix.length][numGroups];
-		//int[] maxInd = 	PhenotypeFitness.evaluatePhenFitness(matrix);
-		float maxFitness = 0, equation = 0, equationBest = 0;
-		
-		int difference = 0, indexMaxDifference = 0, differenceIJ = 0, jindexMaxEquation = 0;
+		int maxDiff = 0, chosenInd = 0, jindexMaxEquation = 0;	
 		
 		for (int r = 0; r < matrix.length; r++) {
 			int[] row = matrix[r];
@@ -70,11 +67,11 @@ public class Crossover {
 		
 		for (int r = 0; r < matrix.length; r++) {
 		/** NON-Deceptive Begins Here **/
-		//int[] maxIndFitness = PhenotypeFitness.evaluatePhenFitness(matrix);
+		//int[] maxIndFitness = PhenotypeFitness.getMaxPhenotype(matrix);
 		//int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, r);
 		/** NON-Deceptive Ends Here **/
 		/** Deceptive **/
-		int[] maxIndFitness = PhenotypeFitness.evaluateDeceptivePhenFitness(matrix);
+		int[] maxIndFitness = PhenotypeFitness.getMaxDeceptivePhenotype(matrix);
  		int[] fitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix, r);
 		/** Deceptive Ends Here **/
 		

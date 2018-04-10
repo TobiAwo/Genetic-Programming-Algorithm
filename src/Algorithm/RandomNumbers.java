@@ -2,11 +2,10 @@ package Algorithm;
 
 public class RandomNumbers {
 
-	public static int getRandomFitness() {
-		int minimum = 0;
-		int maximum = 2;
-		int randomNum = minimum + (int) (Math.random() * maximum);
-		return randomNum;
+	public static int getRandomGene() {
+		int minimum = 0, maximum = 2;
+		int randomGene = minimum + (int) (Math.random() * maximum);
+		return randomGene;
 	}
 
 	public static int getRandomRow() {

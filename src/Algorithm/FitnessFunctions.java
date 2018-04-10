@@ -3,8 +3,8 @@ package Algorithm;
 public class FitnessFunctions {
 
 	/** 1 - Gets fitness of every chromosome in the population **/
-	public static int DisplayEachRowFitness(int[][] matrix) {
-		int maxSum = 0, sum, chosenIn = 0;
+	public static int[] DisplayEachIndidvidualFitness(int[][] matrix) {
+		int maxFitness = 0, sum, chosenIn = 0;
 		//System.out.println("Creatures Fitness");//out
 		for (int i = 0; i < matrix.length; i++) {
 			sum = 0;
@@ -12,16 +12,18 @@ public class FitnessFunctions {
 				if (matrix[i][j] == 1)
 					sum++;
 			}
-			if (sum > maxSum) {
-				maxSum = sum;
+			if (sum > maxFitness) {
+				maxFitness = sum;
 				chosenIn = i; //new
 			}
-			//System.out.println("Fitness of Creature " + (i + 1) + ": " + sum);//out
+			System.out.println("Fitness of Creature " + (i) + ": " + sum);//out
 		}
-		//System.out.println("Highest Fitness: " + maxSum);//out
+		//System.out.println("Highest Fitness in the population: " + maxFitness);//out
 		//System.out.println("Chosen index: " + chosenIn);//out //new
-
-		return chosenIn;
+		int maxIndiv[] = new int[2];
+		maxIndiv[0] = maxFitness;
+		maxIndiv[1] = chosenIn;
+		return maxIndiv; // new
 	}
 
 	/** 2 - Fitness Function - Gets fitness and index of individual chromosome **/
@@ -41,8 +43,8 @@ public class FitnessFunctions {
 	}
 
 	/** 1 - Deceptive - Gets fitness of every chromosome in the population **/
-	public static int DisplayEachDeceptiveRowFitness(int[][] matrix) {
-		int maxSum = 0, sum, chosenIn = 0;
+	public static int DisplayEachDeceptiveIndividualFitness(int[][] matrix) {
+		int maxFitness = 0, sum, chosenIn = 0;
 		boolean isSame = true; //added
 		//System.out.println("Creatures Fitness"); //out
 		for (int i = 0; i < matrix.length; i++) {
@@ -56,8 +58,8 @@ public class FitnessFunctions {
 			}
 			if (isSame)   //added
 				sum = 20; //added
-			if (sum > maxSum) {
-				maxSum = sum;
+			if (sum > maxFitness) {
+				maxFitness = sum;
 				chosenIn = i; //new
 			}
 			//System.out.println("Fitness of Creature " + (i + 1) + ": " + sum); //out
@@ -91,18 +93,18 @@ public class FitnessFunctions {
 	}
 
 	/** 3 - Compares fitness of two chosen chromosome and gets highest **/// - Tournament selection
-	public static int evaluateRowsFitness(int[][] matrix, int[] sumIn1, int[] sumIn2) {
-		int biggestRowSumIndex = 0;
-		if ((sumIn1[0]) > (sumIn2[0])) {
-			biggestRowSumIndex = sumIn1[1];
-			// System.out.println("Row: " + (sumIn1[1] + 1) + " contains greater Fitness of:
-			// " + (sumIn1[0]) + "\n");
-		} else if ((sumIn1[0]) < (sumIn2[0]) || ((sumIn1[0]) == (sumIn2[0]))) {
-			biggestRowSumIndex = sumIn2[1];
-			// System.out.println("Row: " + (sumIn2[1] + 1) + " contains greater/equal
-			// Fitness of: " + (sumIn2[0]) + "\n");
+	public static int tournamentSelection(int[][] matrix, int[] individual1, int[] individual2) {
+		int bestIndividualIndex = 0;
+		if ((individual1[0]) > (individual2[0])) {
+			bestIndividualIndex = individual1[1];
+			// System.out.println("Row: " + (individual1[1] + 1) + " contains greater Fitness of:
+			// " + (individual1[0]) + "\n");
+		} else if ((individual1[0]) < (individual2[0]) || ((individual1[0]) == (individual2[0]))) {
+			bestIndividualIndex = individual2[1];
+			// System.out.println("Row: " + (individual2[1] + 1) + " contains greater/equal
+			// Fitness of: " + (individual2[0]) + "\n");
 		}
-		return biggestRowSumIndex;
+		return bestIndividualIndex;
 	}
 
 	public static int overallPopulationFitness(int[][] matrix) {
