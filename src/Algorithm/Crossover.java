@@ -4,33 +4,33 @@ import java.util.Arrays;
 
 public class Crossover {
 
-	public static void crossover(int[][] matrixCopy, int ranRow1, int ranRow2) {
+	public static void crossover(int[][] population, int ranRow1, int ranRow2) {
 
 		int[][] tempMatrix = new int[MainMethodCalls.rows][MainMethodCalls.columns];
-		for (int row = 0; row < matrixCopy.length; row++) {
-			for (int col = 0; col < matrixCopy[row].length; col++) {
+		for (int row = 0; row < population.length; row++) {
+			for (int col = 0; col < population[row].length; col++) {
 
-				tempMatrix[row][col] = matrixCopy[row][col];
+				tempMatrix[row][col] = population[row][col];
 			}
 		}
-		System.arraycopy(tempMatrix[ranRow1], 0, matrixCopy[ranRow2], 0, (matrixCopy[0].length / 2));
-		System.arraycopy(tempMatrix[ranRow2], 0, matrixCopy[ranRow1], 0, (matrixCopy[0].length / 2));
+		System.arraycopy(tempMatrix[ranRow1], 0, population[ranRow2], 0, (population[0].length / 2));
+		System.arraycopy(tempMatrix[ranRow2], 0, population[ranRow1], 0, (population[0].length / 2));
 	}
 
 	//use tournament selection here for index one
 	//call evaluateRowsFitness
-	public static void guidedCrossover(int[][] matrix, int selectedRowIndex) {
+	public static void guidedCrossover(int[][] population, int selectedRowIndex) {
 		float equation = 0, equationBest = 0;
 		int groupSize = PhenotypeFitness.getK();
-		int numGroups = ((matrix[0].length) / groupSize);
-		int[][] sums = new int[matrix.length][numGroups];
+		int numGroups = ((population[0].length) / groupSize);
+		int[][] sums = new int[population.length][numGroups];
 		int maxDiff = 0, chosenInd = 0, jindexMaxEquation = 0;	
 		
-		for (int r = 0; r < matrix.length; r++) {
-			int[] row = matrix[r];
+		for (int r = 0; r < population.length; r++) {
+			int[] row = population[r];
 
 			for (int g = 0; g < numGroups; g++) {
-				int[] group = Arrays.copyOfRange(row, g * 3, g * 3 + groupSize);
+				int[] group = Arrays.copyOfRange(row, g*groupSize, g*groupSize+groupSize);
 				int groupSum = sumOf(group);
 				
 				/** NON-Deceptive Begins Here **/
@@ -43,9 +43,9 @@ public class Crossover {
 		}
 
 		int[] selectedRowGroups = sums[selectedRowIndex];
-		int[] differences = new int[matrix.length];
+		int[] differences = new int[population.length];
 
-		for (int r = 0; r < matrix.length; r++) {
+		for (int r = 0; r < population.length; r++) {
 
 			int diff = 0;
 			for (int g = 0; g < numGroups; g++)
@@ -65,14 +65,14 @@ public class Crossover {
 		
 					//////////////////////\\\\\\\\\\\\\\\\\\\\
 		
-		for (int r = 0; r < matrix.length; r++) {
+		for (int r = 0; r < population.length; r++) {
 		/** NON-Deceptive Begins Here **/
-		//int[] maxIndFitness = PhenotypeFitness.getMaxPhenotype(matrix);
-		//int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, r);
+		//int[] maxIndFitness = PhenotypeFitness.getMaxPhenotype(population);
+		//int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(population, r);
 		/** NON-Deceptive Ends Here **/
 		/** Deceptive **/
-		int[] maxIndFitness = PhenotypeFitness.getMaxDeceptivePhenotype(matrix);
- 		int[] fitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix, r);
+		int[] maxIndFitness = PhenotypeFitness.getMaxDeceptivePhenotype(population);
+ 		int[] fitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(population, r);
 		/** Deceptive Ends Here **/
 		
 			int diff = 0;
@@ -102,14 +102,14 @@ public class Crossover {
 		System.out.println("SECOND ROW CHOSEN IS: " + (jindexMaxEquation));
 		
 		/** NON-Deceptive Begins Here **/
-		//int[] finalFitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(matrix, jindexMaxEquation);
+		//int[] finalFitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(population, jindexMaxEquation);
 		/** NON-Deceptive Ends Here **/
 		/** Deceptive **/
- 		 int[] finalFitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(matrix, jindexMaxEquation);
+ 		 int[] finalFitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(population, jindexMaxEquation);
 		/** Deceptive Ends Here **/
 		System.out.println("FITNESS OF SECOND ROW CHOSEN IS: " + (finalFitnessJ[0]) + "\n");//prints fitness of chosen creature
-		crossover(matrix, selectedRowIndex, jindexMaxEquation); //calls crossover method to cross both creatures
-		MainMethodCalls.printMatrix(matrix); // prints new matrix
+		crossover(population, selectedRowIndex, jindexMaxEquation); //calls crossover method to cross both creatures
+		MainMethodCalls.printMatrix(population); // prints new matrix
 
 	}
 

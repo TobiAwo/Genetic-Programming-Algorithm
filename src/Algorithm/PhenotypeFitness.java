@@ -129,7 +129,7 @@ public class PhenotypeFitness {
 		return ar;
 	}
 
-	public static int evaluatePhenRowsFitness(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {
+	public static int phenotypeTournamentSelection(int[][] matrixPhen, int[] sumIn1, int[] sumIn2) {
 		return FitnessFunctions.tournamentSelection(matrixPhen, sumIn1, sumIn2);
 	}
 
