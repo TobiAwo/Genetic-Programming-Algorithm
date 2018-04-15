@@ -27,9 +27,10 @@ public class MainMethodCalls {
 		
 		//PhenotypeFitness.evaluatePhenFitness(population);//Phenotype //non deceptive 
 		//PhenotypeFitness.evaluateDeceptivePhenFitness(population);//Phenotype // deceptive
-		
+								///////\\\\
 		//PhenotypeFitness.increasingFitness(population, 0); 
-		PhenotypeFitness.getMaxIncreasingFitness(population);
+		//PhenotypeFitness.getMaxIncreasingFitness(population);
+		 Crossover.guided(population, 1);
 
 		System.exit(0);
 		

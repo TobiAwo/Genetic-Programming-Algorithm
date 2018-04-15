@@ -142,10 +142,8 @@ public class PhenotypeFitness {
 			
 			if (count % getK() == 0) {
 				i +=(0.5);
-				
 				fitness= fitness*i;	
 				fitnessTotal+=fitness;
-
 				fitness = 0;				
 			}
 		}
