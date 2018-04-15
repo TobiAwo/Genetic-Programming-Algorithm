@@ -17,8 +17,6 @@ public class Crossover {
 		System.arraycopy(tempMatrix[ranRow2], 0, population[ranRow1], 0, (population[0].length / 2));
 	}
 
-	//use tournament selection here for index one
-	//call evaluateRowsFitness
 	public static void guidedCrossover(int[][] population, int selectedRowIndex) {
 		float equation = 0, equationBest = 0;
 		int groupSize = PhenotypeFitness.getK();
@@ -33,10 +31,10 @@ public class Crossover {
 				int[] group = Arrays.copyOfRange(row, g*groupSize, g*groupSize+groupSize);
 				int groupSum = sumOf(group);
 				
-				/** NON-Deceptive Begins Here **/
-				if (Arrays.asList(groupSum).contains(000))
+				/** Deceptive Begins Here **/
+				if (groupSum == 0)
 					groupSum = 20;
-				/** NON-Deceptive Ends Here **/
+				/** Deceptive Ends Here **/
 
 				sums[r][g] = groupSum;
 			}
@@ -58,17 +56,10 @@ public class Crossover {
 				chosenInd = r;
 			}
 		}
-		System.out.println("\n population");
-		System.out.println(Arrays.toString(differences));
-		System.out.println("Max difference: " + maxDiff);
-		System.out.println("Chosen Index: " + chosenInd);
-		
-					//////////////////////\\\\\\\\\\\\\\\\\\\\
-		
 		for (int r = 0; r < population.length; r++) {
 		/** NON-Deceptive Begins Here **/
-		//int[] maxIndFitness = PhenotypeFitness.getMaxPhenotype(population);
-		//int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(population, r);
+		 //int[] maxIndFitness = PhenotypeFitness.getMaxPhenotype(population);
+		 //int[] fitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(population, r);
 		/** NON-Deceptive Ends Here **/
 		/** Deceptive **/
 		int[] maxIndFitness = PhenotypeFitness.getMaxDeceptivePhenotype(population);
@@ -81,35 +72,13 @@ public class Crossover {
 
 			differences[r] = diff;	
 			equation = ((float) (((float)diff / ((float)maxDiff)) + (((float)fitnessJ[0])) / ((float)maxIndFitness[0])));
-			//System.out.println("SUM: " + fitnessJ[0]); dup
-			//System.out.println("Max: " + maxIndFitness[0]);dup
-				
-			System.out.println("\nfor index: " + fitnessJ[1]);
-			System.out.println("Fitness: " + fitnessJ[0]);
-			System.out.println("maxFitness: " + maxIndFitness[0]);
-			System.out.println("difference beteeen I and J: " + diff);
-			System.out.println("max difference: " + maxDiff);
-			System.out.println("equation: " + equation);
-			System.out.println("Best Current Equation : " + equationBest);
 			
 			if (equation > equationBest) {
 				equationBest = equation;
 				jindexMaxEquation = fitnessJ[1];
-				System.out.println("max equation changed: " + jindexMaxEquation + "\n" + equationBest);///
 			}
 		}
-		System.out.println("\n"+"FINAL MAX EQUATION SUM IS : " + equationBest);
-		System.out.println("SECOND ROW CHOSEN IS: " + (jindexMaxEquation));
-		
-		/** NON-Deceptive Begins Here **/
-		//int[] finalFitnessJ = PhenotypeFitness.getRowsFitnessPhenotype(population, jindexMaxEquation);
-		/** NON-Deceptive Ends Here **/
-		/** Deceptive **/
- 		 int[] finalFitnessJ = PhenotypeFitness.getDeceptiveRowFitnessPhenotype(population, jindexMaxEquation);
-		/** Deceptive Ends Here **/
-		System.out.println("FITNESS OF SECOND ROW CHOSEN IS: " + (finalFitnessJ[0]) + "\n");//prints fitness of chosen creature
 		crossover(population, selectedRowIndex, jindexMaxEquation); //calls crossover method to cross both creatures
-		MainMethodCalls.printMatrix(population); // prints new matrix
 
 	}
 
@@ -118,11 +87,7 @@ public class Crossover {
 		for (int i = 0; i < integers.length; i++) {
 			if (integers[i] == 1)
 				total++;
-			//System.out.println("\n integer i:" + integers[i]);
 		}
-		//System.out.println("\n sum:" + total);
 		return total;
 	}
-	
-	
 }
